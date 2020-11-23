@@ -204,8 +204,8 @@ for an available AMReX installation.
            | MFIX\_OMP       | Enable build with OpenMP     | no/yes           | no          |
            |                 |                              |                  |             |
            +-----------------+------------------------------+------------------+-------------+
-           | MFIX\_CUDA      | Enable build with CUDA       | no/yes           | no          |
-           |                 |                              |                  |             |
+           | MFIX\_GPU\_     | On-node, accelerated GPU \   | NONE             | NONE,SYCL,\ |
+           | BACKEND         | backend                      |                  | CUDA,HIP    |
            +-----------------+------------------------------+------------------+-------------+
            | MFIX\_HYPRE     | Enable HYPRE support         | no/yes           | no          |
            |                 |                              |                  |             |
@@ -311,7 +311,7 @@ Finally, navigate to the base of the MFIX-Exa repository and compile in GPU mode
     > cd mfix
     > mdkir build
     > cd build
-    > cmake -DMFIX_CUDA=yes -DAMReX_CUDA_ARCH=Volta -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran ..
+    > cmake -DMFIX_GPU_BACKEND=CUDA -DAMReX_CUDA_ARCH=Volta -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran ..
     > make -j
 
 For more information about GPU nodes in Cori -- `<https://docs-dev.nersc.gov/cgpu/>`_
@@ -343,7 +343,7 @@ To compile:
     > cd mfix
     > mdkir build
     > cd build
-    > cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran -DMFIX_CUDA=[no|yes]
+    > cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran -DMFIX_GPU_BACKEND=[NONE|CUDA]
     > make -j
 
 An example of a *submission_script* for GPUs can be found in the repo ``mfix/tests/GPU_test/script.sh``.
