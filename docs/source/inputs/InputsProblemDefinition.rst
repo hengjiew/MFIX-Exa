@@ -660,7 +660,7 @@ tridimensional). We recall that, on the remaining part of the EBs, homogeneous
 Neumann boundary conditions are assumed by default.
 
 In the following table there is a list of the possible entries for EB boundary
-conditions. Each entry must be preceeded by `bc.[region0].`
+conditions. Each entry must be preceded by `bc.[region0].`
 
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 |                     | Description                                                           |   Type      | Default   |

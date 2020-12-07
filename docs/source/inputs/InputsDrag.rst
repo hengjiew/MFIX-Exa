@@ -9,21 +9,21 @@ The following inputs must be preceded by "mfix."
 | drag_type         | Which drag model to use                                               | String      | None      |
 +-------------------+-----------------------------------------------------------------------+-------------+-----------+
 
-The options currently supported in mfix are :cpp:`WenYu`, :cpp:`Gidaspow`, :cpp:`BVK2`, or :cpp:`UserDrag`. 
+The options currently supported in mfix are :cpp:`WenYu`, :cpp:`Gidaspow`, :cpp:`BVK2`, or :cpp:`UserDrag`.
 
-If one of these is not specified, the code will abort with 
+If one of these is not specified, the code will abort with
 
 .. highlight:: c++
 
 ::
 
-   amrex::Abort::0::"Don't know this drag type!!! 
+   amrex::Abort::0::"Don't know this drag type!!!
 
 The drag models are defined in src/src_des/des_drag_K.H
 
 If the user wishes to use their own drag model, they must
 
-  * specify :cpp:`mfix.drag_type = UserDrag` in the inputs file 
+  * specify :cpp:`mfix.drag_type = UserDrag` in the inputs file
 
   * provide the code in the ComputeDragUser routine in a local usr_drag.cpp file.
     An example can be found in tests/DEM06-x.
@@ -39,7 +39,7 @@ With the variables defined as follows:
      *    Mug     - gas laminar viscosity
      *    ROpg    - gas density * EP_g
      *    vrel    - magnitude of gas-solids relative velocity
-     *    DPM     - particle diamater of solids phase M
+     *    DPM     - particle diameter of solids phase M
      *    DPA     - average particle diameter
      *    PHIS    - solids volume fraction of solids phases
      *    fvelx   - x component of the fluid velocity at the particle position
@@ -49,7 +49,7 @@ With the variables defined as follows:
      *    pid     - particle id number
      */
 
-The WenYu model is defined as 
+The WenYu model is defined as
 
    .. code:: shell
 
@@ -67,7 +67,7 @@ The WenYu model is defined as
      if (RE < DEMParams::eps) return 0.0;
      return 0.75 * C_d * vrel * ROPg * std::pow(EPg, -2.65) / DPM;
 
-The Gidaspow model is defined as 
+The Gidaspow model is defined as
 
    .. code:: shell
 
@@ -97,7 +97,7 @@ The Gidaspow model is defined as
       if (RE < DEMParams::eps) return 0.0;
       return (1.0 - PHI_gs)*Ergun + PHI_gs*WenYu;
 
-The Gidaspow model is defined as 
+The Gidaspow model is defined as
 
    .. code:: shell
 
