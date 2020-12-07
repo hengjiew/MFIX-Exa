@@ -6,13 +6,16 @@ on: push
 jobs:
   # Set the job key. The key is displayed as the job name
   # when a job name is not provided
-  super-lint:
+  publish:
     # Name the Job
     name: Build Sphinx manual HTML target
     # Set the type of machine to run on
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Install Doxygen
         run: sudo apt install doxygen
 
@@ -27,3 +30,12 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
