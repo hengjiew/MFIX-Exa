@@ -67,7 +67,7 @@ numerical results for roughly the first half of the transien: an initially flat
 interface gives way to many fingers falling into the gas which merge and form 
 a semi-stable bubble pattern. However, the simulated bubbles appear to be less
 stable than those in the lab, which rise uniformily to the surface. However, in 
-the simulations the center bubble rises slighlty faster than the one on the 
+the simulations the center bubble rises slightly faster than the one on the 
 left, which shifts more weight over the left-hand bubble, which further impedes 
 its rise and eventually "squishes" the left-hand bubble into the center bubble
 as it breaks the surface. Later, the right hand bubble also merges with (what 
@@ -77,7 +77,7 @@ significantly accelerates the second half of the transient (notice the
 different times between experiment and simulation). Several different 
 variations of this setup were performed: different drag laws, slower inversion 
 time, different combinations of particle restitution and friction coefficients, 
-inclusion of front and back walls. Although all tests were slighlty different, 
+inclusion of front and back walls. Although all tests were slightly different, 
 none were able to match the stability of the later time bubble pattern observed 
 experimentally.  
 

@@ -139,7 +139,7 @@ The :cpp:`mfix` class stores the following EB data:
 
 As discussed in the previous sub-section, the difference between
 :cpp:`mfix::eb_levels` and :cpp:`mfix::particle_eb_levels` enables the user to
-specify a modfied EB geometry for particles only. Whereas the fluid sees the EB
+specify a modified EB geometry for particles only. Whereas the fluid sees the EB
 geometry in :cpp:`mfix::eb_levels`. If no addition particle EB geometry is
 specified (point 4 in the previous section), then
 :cpp:`mfix::particle_eb_levels` points to :cpp:`mfix::eb_levels`.
@@ -229,7 +229,7 @@ calling :cpp:`mfix::Init`. The recommended procedure therefore is
 Also note that mfix defines boundary conditions in Fortran also (via the
 mfix.dat). Since these are potentially needed to build EB walls,
 :cpp:`mfix::make_eb_geometry` also calls :cpp:`mfix_set_bc_type`.
- 
+
 The grids for each level are build in the :cpp:`mfix::Init` by invoking the
 initialization functions inherited from :cpp:`amrex::AmrCore`.
 
@@ -305,4 +305,4 @@ There are two special cases involving level-sets:
 
 .. _AMReX EB documentation: https://amrex-codes.github.io/amrex/docs_html/EB_Chapter.html
 .. _AMReX Level-Set documentation: https://amrex-codes.github.io/amrex/docs_html/EB.html#level-sets
-.. _AMReX geometry documentation: https://amrex-codes.github.io/amrex/docs_html/EB.html#initializing-the-geometric-database 
+.. _AMReX geometry documentation: https://amrex-codes.github.io/amrex/docs_html/EB.html#initializing-the-geometric-database
