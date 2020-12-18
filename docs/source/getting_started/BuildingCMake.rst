@@ -154,10 +154,10 @@ Next, configure, build and install AMReX as follows:
 
     > mkdir build
     > cd build
-    > cmake -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] -DAMReX_PARTICLES=yes -DAMReX_AMRDATA=yes -DAMReX_EB=yes [other amrex options] -DCMAKE_INSTALL_PREFIX:PATH=/absolute/path/to/installdir ..
+    > cmake -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] -DAMReX_PARTICLES=yes -DAMReX_EB=yes [other amrex options] -DCMAKE_INSTALL_PREFIX:PATH=/absolute/path/to/installdir ..
     > make install
 
-The options **AMReX\_PARTICLES=yes**, **AMReX\_AMRDATA=yes**, and **AMReX\_EB=yes** are required by MFiX-Exa. ``[other amrex options]`` in the snippet above refers to any other AMReX configuration option in addition to the required ones. Please refer to the `AMReX user guide <https://amrex-codes.github.io/amrex/docs_html/BuildingAMReX.html#building-with-cmake>`_ for more details on building AMReX with CMake.
+The options **AMReX\_PARTICLES=yes** and **AMReX\_EB=yes** are required by MFiX-Exa. ``[other amrex options]`` in the snippet above refers to any other AMReX configuration option in addition to the required ones. Please refer to the `AMReX user guide <https://amrex-codes.github.io/amrex/docs_html/BuildingAMReX.html#building-with-cmake>`_ for more details on building AMReX with CMake.
 
 
 Building MFiX-Exa
