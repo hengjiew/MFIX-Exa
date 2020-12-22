@@ -154,10 +154,10 @@ Next, configure, build and install AMReX as follows:
 
     > mkdir build
     > cd build
-    > cmake -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] -DAMReX_PARTICLES=yes -DAMReX_EB=yes [other amrex options] -DCMAKE_INSTALL_PREFIX:PATH=/absolute/path/to/installdir ..
+    > cmake -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] -DAMReX_PARTICLES=yes -DAMReX_EB=yes -DAMReX_PLOTFILE_TOOLS=yes [other amrex options] -DCMAKE_INSTALL_PREFIX:PATH=/absolute/path/to/installdir ..
     > make install
 
-The options **AMReX\_PARTICLES=yes** and **AMReX\_EB=yes** are required by MFiX-Exa. ``[other amrex options]`` in the snippet above refers to any other AMReX configuration option in addition to the required ones. Please refer to the `AMReX user guide <https://amrex-codes.github.io/amrex/docs_html/BuildingAMReX.html#building-with-cmake>`_ for more details on building AMReX with CMake.
+The options **AMReX\_PARTICLES=yes**, **AMReX\_EB=yes** and  **AMReX\_PLOTFILE\_TOOLS=yes** are required by MFiX-Exa. ``[other amrex options]`` in the snippet above refers to any other AMReX configuration option in addition to the required ones. Please refer to the `AMReX user guide <https://amrex-codes.github.io/amrex/docs_html/BuildingAMReX.html#building-with-cmake>`_ for more details on building AMReX with CMake.
 
 
 Building MFiX-Exa
@@ -189,9 +189,6 @@ for an available AMReX installation.
            | Option name     | Description                  | Possible values  | Default     |
            |                 |                              |                  | value       |
            +=================+==============================+==================+=============+
-           | CMAKE\_Fortran\ | User-defined Fortran flags   | valid Fortran    | None        |
-           | _FLAGS          |                              | compiler flags   |             |
-           +-----------------+------------------------------+------------------+-------------+
            | CMAKE\_CXX\     | User-defined C++ flags       | valid C++        | None        |
            | _FLAGS          |                              | compiler flags   |             |
            +-----------------+------------------------------+------------------+-------------+
@@ -226,18 +223,18 @@ The system defaults compilers can be overwritten as follows:
 
 .. code:: shell
 
-    > cmake -DCMAKE_CXX_COMPILER=<c++-compiler> -DCMAKE_Fortran_COMPILER=<f90-compiler> [options]  ..
+    > cmake -DCMAKE_CXX_COMPILER=<c++-compiler> [options]  ..
 
 When building on a platform that uses the ``module`` utility, use either
 the above command (with full path to the compilers) or the following:
 
 .. code:: shell
 
-    > cmake -DCMAKE_CXX_COMPILER=CC -DCMAKE_Fortran_COMPILER=ftn [options] ..
+    > cmake -DCMAKE_CXX_COMPILER=CC [options] ..
 
 MFiX-Exa uses the same compiler flags used to build AMReX, unless
-``CMAKE_Fortran_FLAGS``/``CMAKE_CXX_FLAGS`` is explicitly provided, or
-the environmental variables ``FFLAGS``/``CXXFLAGS`` are set.
+``CMAKE_CXX_FLAGS`` is explicitly provided, or
+the environmental variable ``CXXFLAGS`` is set.
 
 
 For GPU builds, MFiX-Exa relies on the `AMReX GPU build infrastructure <https://amrex-codes.github.io/amrex/docs_html/GPU.html#building-with-cmake>`_
@@ -311,7 +308,7 @@ Finally, navigate to the base of the MFIX-Exa repository and compile in GPU mode
     > cd mfix
     > mdkir build
     > cd build
-    > cmake -DMFIX_GPU_BACKEND=CUDA -DAMReX_CUDA_ARCH=Volta -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran ..
+    > cmake -DMFIX_GPU_BACKEND=CUDA -DAMReX_CUDA_ARCH=Volta -DCMAKE_CXX_COMPILER=g++ ..
     > make -j
 
 For more information about GPU nodes in Cori -- `<https://docs-dev.nersc.gov/cgpu/>`_
@@ -343,7 +340,7 @@ To compile:
     > cd mfix
     > mdkir build
     > cd build
-    > cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=gfortran -DMFIX_GPU_BACKEND=[NONE|CUDA]
+    > cmake -DCMAKE_CXX_COMPILER=g++ -DMFIX_GPU_BACKEND=[NONE|CUDA]
     > make -j
 
 An example of a *submission_script* for GPUs can be found in the repo ``mfix/tests/GPU_test/script.sh``.
