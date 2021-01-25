@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>MFiX-Exa: Gallery</title>
+    <title>MFIX-Exa: Gallery</title>
     <link rel="icon" href="web_icon.ico" type="image/x-icon">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
@@ -63,6 +63,72 @@ END TEMPLATE-->
 
 
         <header class="major">
+          <h2>Spouted Bed</h2>
+          <p>Eruption! The moment of spout breakthrough</p>
+        </header>
+        <div class="row 50% uniform">
+          <div class="8u 12u(small)">
+            Often used for drying and mixing, spouted beds are fluidized by high-
+            speed gas jets to drive particle mixing. At right, MFIX-Exa is used to
+            simulate a spouted bed experiment recently studied at 
+            <a href="https://doi.org/10.1016/j.partic.2017.02.008">NETL</a>. 
+            The bed consists of 2.2M HDPE particles which are fluidized by 
+            single-celled jet. The jet velocity is ramped linearly from zero, 
+            exceeding 100m/s at breakthrough. The simulation was carried out on
+            NETL's Joule2 HPC using 1600 CPUs. The animation was  
+            The animation was rendered with 
+            <a href="https://www.blender.org">Blender</a>.
+            <p><p>
+
+            Animation courtesy of Justin Weber &amp; William D. Fullmer,
+            <a href="https://mfix.netl.doe.gov">NETL</a>, Morgantown WV.
+
+            </p>
+          </div>
+          <div class="4u$ 12u(small)">
+            <center>
+              <iframe src="https://www.youtube.com/embed/imOd_9aib1g" 
+               width="250" height="310" allowfullscreen="true" frameborder="0" 
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </center>
+          </div>
+        </div>
+        <p>
+
+
+        <header class="major">
+          <h2>Shameless Self-Promotion</h2>
+          <p>Soft-sphere molecular dynamics simulation with heavily designed initial conditions</p>
+        </header>
+        <div class="row 50% uniform">
+          <div class="4u 12u(small)">
+            <center>
+              <iframe src="https://widgets.figshare.com/articles/12971144/embed?show_title=0"
+               width="250" height="310" allowfullscreen="true" frameborder="0"></iframe>
+            </center>
+          </div>
+          <div class="8u$ 12u(small)">
+            A fun MFIX-Exa simulation that shows the evolution of 100k elastic 
+            particles in a fully periodic domain. Most of the domain is initially 
+            static, except for a collection of particles which are given a thermal 
+            (Maxwellian) speed in specific regions. Shock waves of momentum and 
+            concentration emanate from the thermal regions as the granular gas 
+            evolves to a homogeneous state. Animation shows particles colored by 
+            velocity magnitude rendered by 
+             <a href="https://ovito.org">Ovito</a>
+            and played back in reverse.
+            <p><p>
+
+            Animation courtesy William D. Fullmer,
+            <a href="https://mfix.netl.doe.gov">NETL</a>, Morgantown WV.
+
+            </p>
+          </div>
+        </div>
+        <p>
+
+
+        <header class="major">
           <h2>Dilute Riser Flow</h2>
           <p>Falling clusters in the near-wall region</p>
         </header>
@@ -79,7 +145,7 @@ END TEMPLATE-->
             climbs slowly on the left. We note that the domain is too short, as the streamer
             has interacted with its periodic image. Future work will simulate the full 18 m
             length of the riser.
-            Simulation by MFiX-Exa develop (git hash ef171c9d) using 24 GPUs on NETL's Joule2 HPC.
+            Simulation by MFIX-Exa develop (git hash ef171c9d) using 24 GPUs on NETL's Joule2 HPC.
             The animation rendered with <a href="https://www.blender.org">Blender</a>.
             <p><p>
 
@@ -117,7 +183,7 @@ END TEMPLATE-->
             erupt a the surface. <a href="https://ovito.org">Ovito</a> animation shows particles in
             the center 10 mm thick slice of the 190 mm diameter bed, colored by their vertical
             velocity ranging from -0.3 m/s (black) to 1.0 m/s (white).
-            Simulation models 260K particles with MFiX-Exa 19.08 using 32 CPU cores.
+            Simulation models 260K particles with MFIX-Exa 19.08 using 32 CPU cores.
             <p><p>
 
             Animation courtesy William D. Fullmer,
@@ -141,7 +207,7 @@ END TEMPLATE-->
             which reaches a (statistical) equilibrium between coarsening via finger merging and
             refinement via bubble splitting. Black and white <a href="https://ovito.org">ovito</a>
             animation shows particle location.
-            Simulation performed with MFiX-Exa 19.08 238 16 CPU cores.
+            Simulation performed with MFIX-Exa 19.08 238 16 CPU cores.
             <p><p>
 
             Animation courtesy of William D. Fullmer,
@@ -176,7 +242,7 @@ END TEMPLATE-->
             <a href="https://doi.org/10.1016/j.powtec.2018.06.049">left-right alternating single
             bubble pattern</a> can be achieved. The animation, rendered in
             <a href="https://www.blender.org">Blender</a>, shows time 10s to 15s played back at
-            1/4x speed. Simulation considers 166k particles run with MFiX Exa 19.08 using 32 CPU
+            1/4x speed. Simulation considers 166k particles run with MFIX-Exa 19.08 using 32 CPU
             cores.
             <p><p>
 
@@ -202,7 +268,7 @@ END TEMPLATE-->
             <a href="https://arxiv.org/abs/1809.04173">onset of clustering</a> causing the
             originally homogeneous state to develop spatial inhomogeneities. Animation shows
             particle velocity magnitude ranging from 0.0116 m/s (white) to 0 (black). Simulation run
-            with MFiX Exa 19.08 using 16 CPU cores.
+            with MFIX-Exa 19.08 using 16 CPU cores.
             <p><p>
 
             Animation courtesy of William D. Fullmer,
@@ -286,15 +352,15 @@ AMReX examples-->
     <footer id="footer">
       <div class="container">
   <section class="ack">
-    MFiX-Exa is developed at
+    MFIX-Exa is developed at
           <a href="http://www.lbl.gov/"> LBNL </a>, and
           <a href="https://www.netl.gov/"> NETL </a>
-          as part of the MFiX-Exa Project in DOE's Exascale Computing Project.
+          as part of the MFIX-Exa Project in DOE's Exascale Computing Project.
   </section>
   <div class="row">
     <div class="8u 12u$(medium)">
       <ul class="copyright">
-        <li>&copy; MFiX-Exa development team. All rights reserved.</li>
+        <li>&copy; MFIX-Exa development team. All rights reserved.</li>
         <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
       </ul>
     </div>
