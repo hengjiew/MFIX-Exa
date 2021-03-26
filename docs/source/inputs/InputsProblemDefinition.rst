@@ -649,6 +649,32 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
    bc.outflow.myfluid.pressure =  0.0
 
 
+Transient Boundary Conditions
+-----------------------------
+
+Velocity, temperature, and pressure boundary conditions may also be specified as a 
+function of time simply by adding a new column. The time value is entered in the 
+new first column. We can make the `mi` boundary condition above time-dependent 
+by replacing: 
+
+.. code-block:: none
+
+   bc.inflow.myfluid.velocity    =  0.0  0.0    0.0  0.0
+   bc.inflow.myfluid.velocity    =  3.0  0.015  0.0  0.0
+   bc.inflow.myfluid.temperature =  0.0  300
+   bc.inflow.myfluid.temperature =  2.99 300
+   bc.inflow.myfluid.temperature =  3.0  500
+   bc.inflow.myfluid.temperature =  4.0  500
+   bc.inflow.myfluid.temperature =  4.01 300
+
+In the above example, the inflow velocity is accelerated from zero to its  
+final value over a period of three seconds. Linear interpolation is used in 
+between discrete time values and held constant at the last time value. The 
+temperature sees an abrupt spike from 300 up to 500 at t = 3s and then back 
+down again after 4s. Note that the timestep is not adjusted to sync with 
+transient BCs.  
+
+
 Boundary Conditions on Embedded Boundaries
 ------------------------------------------
 
