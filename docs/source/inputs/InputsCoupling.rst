@@ -1,5 +1,8 @@
-Drag Types
-==========
+Interphase Coupling
+===================
+
+Drag
+----
 
 The following inputs must be preceded by "mfix."
 

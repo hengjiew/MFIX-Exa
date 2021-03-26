@@ -38,8 +38,8 @@ keywords such as ``mfix``, ``amr``, ``geometry``, ``nodal_proj`` etc.
 .. toctree::
    :maxdepth: 1
 
-   Units, mesh, geometry, species, fluid, DEM, regions, initial and boundary conditions <inputs/InputsProblemDefinition>
-   Particle drag <inputs/InputsDrag>
+   inputs/InputsProblemDefinition
+   inputs/InputsCoupling
    inputs/InputsTimeStepping
    inputs/InputsInitialization
    inputs/InputsLoadBalancing
