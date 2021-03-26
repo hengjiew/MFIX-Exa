@@ -35,7 +35,8 @@ With the variables defined as follows:
 
    .. code:: shell
 
-      *  \brief Returns: the calculated drag coefficient.
+    /*
+     *  \brief Returns: the calculated drag coefficient.
      *
      *  Inputs:
      *    EPg     - gas volume fraction
@@ -129,3 +130,37 @@ The Gidaspow model is defined as
       {
           return 0.0;
       }
+
+
+
+Heat Transfer Coefficient
+-------------------------
+
+
+The following inputs must be preceded by "mfix."
+
++-------------------+---------------------------------+-------------+--------------+
+|                   | Description                     |   Type      | Default      |
++===================+=================================+=============+==============+
+| convection_type   | Which HTC model to use          | String      | RanzMarshall |
++-------------------+---------------------------------+-------------+--------------+
+
+The options currently supported in mfix are :cpp:`RanzMarshall` (default) and :cpp:`Gunn`. 
+In both models the HTC is determined from a Nusslet number corelation. 
+
+The RanzMarshall Nusselt number correlation is defined as: 
+
+   .. code:: shell
+
+      amrex::Real N_Nu = 2.0 + 0.6 * std::sqrt(N_Re) * std::pow(N_Pr, 0.333);
+
+
+The Gunn Nusselt number correlation is defined as: 
+
+   .. code:: shell
+
+      amrex::Real N_Nu =
+          (7 - 10*EPg + 5*EPg*EPg)*(1 + .7*std::pow(N_Re, 0.2)*std::cbrt(N_Pr))
+          + (1.33 - 2.4*EPg + 1.2*EPg*EPg)*std::pow(N_Re, 0.7)*std::cbrt(N_Pr);
+
+
