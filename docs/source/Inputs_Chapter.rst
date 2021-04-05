@@ -41,6 +41,7 @@ keywords such as ``mfix``, ``amr``, ``geometry``, ``nodal_proj`` etc.
    inputs/InputsProblemDefinition
    inputs/InputsCoupling
    inputs/InputsTimeStepping
+   inputs/InputsDiscretization 
    inputs/InputsInitialization
    inputs/InputsLoadBalancing
    inputs/InputsMultigrid
