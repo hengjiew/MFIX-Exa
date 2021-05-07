@@ -17,6 +17,8 @@ units.
 +----------------------------+-----------------------------------------+
 | Physical quantity          | MFIX-Exa SI unit                        |
 +============================+=========================================+
+| amount of substance        | mole [:math:`mol`]                      |
++----------------------------+-----------------------------------------+
 | length                     | meter [:math:`m`]                       |
 +----------------------------+-----------------------------------------+
 | mass                       | kilogram [:math:`kg`]                   |
@@ -46,6 +48,12 @@ units.
 | thermal conductivity       | [:math:`W \cdot m^{-1} \cdot K^{-1}`]   |
 +----------------------------+-----------------------------------------+
 | spring coefficient         | [:math:`N \cdot m^{-1}`]                |
++----------------------------+-----------------------------------------+
+| molecular weight           | [:math:`kg \cdot mol^{-1}`]             |
++----------------------------+-----------------------------------------+
+| heat of formation          | [:math:`J \cdot kg^{-1}`]               |
++----------------------------+-----------------------------------------+
+| chemical reaction rate     | [:math:`mol \cdot m^{-3} \cdot s^{-1}`] |
 +----------------------------+-----------------------------------------+
 
 
@@ -100,7 +108,7 @@ The following inputs must be preceded by "mfix."
 +------------------------+-------------------------------------------------------------------+----------+-----------+
 | po_no_par_out          | Let particles exit (default) or bounce-back at pressure outflows  |   Int    | 0         |
 +------------------------+-------------------------------------------------------------------+----------+-----------+
-| gravity                | Gravity vector (e.g., mfix.gravity = -9.81  0.0  0.0) [required]  |  Reals   |  None     |
+| gravity                | Gravity vector (e.g., mfix.gravity = -9.81  0.0  0.0) [required]  |   Reals  | 0 0 0     |
 +------------------------+-------------------------------------------------------------------+----------+-----------+
 | advect_density         | Switch for turning ON (1) or OFF (0) fluid density evolution      |   Int    | 0         |
 +------------------------+-------------------------------------------------------------------+----------+-----------+
@@ -112,8 +120,9 @@ The following inputs must be preceded by "mfix."
 | solve_reactions        | Switch for turning ON (1) or OFF (0) inter/intra-phase chemical   |   Int    | 0         |
 |                        | reactions                                                         |          |           |
 +------------------------+-------------------------------------------------------------------+----------+-----------+
-| open_system_constraint | Switch for turning ON (1) or OFF (0) the open-system constraint.  |   Int    | 0         |
-|                        | By default, the cold-flow constraint is used.                     |          |           |
+| ideal_gas_constraint   | Turn this ON to impose an open/closed system ideal-gas constraint |   String | None      |
+|                        | Default is 'None' (no ideal-gas constraint). To activate it, pass |          |           |
+|                        | 'OpenSystem' or 'ClosedSystem' (case-insensitive)                 |          |           |
 +------------------------+-------------------------------------------------------------------+----------+-----------+
 
 
@@ -133,30 +142,39 @@ Enabling the species mass fraction solver and specifying species model options.
 
 The following inputs must be preceded by the "species." prefix
 
-+----------------------------------+-------------------------------------------------------+----------+-----------+
-|                                  | Description                                           |   Type   | Default   |
-+==================================+=======================================================+==========+===========+
-| [specie0].molecular_weight       | Value of species molecular weight. [required if       |  Real    |  0        |
-|                                  | fluid.molecular_weight='mixture'].                    |          |           |
-+----------------------------------+-------------------------------------------------------+----------+-----------+
-| diffusivity                      | Specify which diffusivity model to use for species    | String   |  None     |
-|                                  | [required].                                           |          |           |
-|                                  | Available options include:                            |          |           |
-|                                  |                                                       |          |           |
-|                                  | * 'constant' for constant diffusivity model           |          |           |
-+----------------------------------+-------------------------------------------------------+----------+-----------+
-| [specie0].diffusivity.constant   | Value of constant species diffusivity. [required if   |  Real    |  None     |
-|                                  | diffusivity_model='constant'].                        |          |           |
-+----------------------------------+-------------------------------------------------------+----------+-----------+
-| specific_heat                    | Specify which specific heat model to use for species  | String   |  None     |
-|                                  | [required if fluid.molecular_weight='mixture'].       |          |           |
-|                                  | Available options include:                            |          |           |
-|                                  |                                                       |          |           |
-|                                  | * 'constant' for constant specific heat model         |          |           |
-+----------------------------------+-------------------------------------------------------+----------+-----------+
-| [specie0].specific_heat.constant | Value of constant species diffusivity. [required if   |  Real    |  None     |
-|                                  | diffusivity_model='constant'].                        |          |           |
-+----------------------------------+-------------------------------------------------------+----------+-----------+
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+|                                           | Description                                           |   Type   | Default   |
++===========================================+=======================================================+==========+===========+
+| [specie0].molecular_weight                | Value of species molecular weight. [required if       |  Real    |  0        |
+|                                           | fluid.molecular_weight='mixture'].                    |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+| diffusivity                               | Specify which diffusivity model to use for species    | String   |  None     |
+|                                           | [required].                                           |          |           |
+|                                           | Available options include:                            |          |           |
+|                                           |                                                       |          |           |
+|                                           | * 'constant' for constant diffusivity model           |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+| [specie0].diffusivity.constant            | Value of constant species diffusivity. [required if   |  Real    |  None     |
+|                                           | diffusivity_model='constant'].                        |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+| specific_heat                             | Specify which specific heat model to use for species  | String   |  None     |
+|                                           | [required if fluid.molecular_weight='mixture'].       |          |           |
+|                                           | Available options include:                            |          |           |
+|                                           |                                                       |          |           |
+|                                           | * 'constant' for constant specific heat model         |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+| [specie0].specific_heat.constant          | Value of constant species diffusivity. [required if   |  Real    |  None     |
+|                                           | diffusivity model='constant'].                        |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+| enthalpy_of_formation                     | Specify which enthalpy of formation model to use for  | String   |  None     |
+|                                           | species.                                              |          |           |
+|                                           | Available options include:                            |          |           |
+|                                           |                                                       |          |           |
+|                                           | * 'constant' for constant enthalpy of formation model |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
+| [specie0].enthalpy_of_formation.constant  | Value of constant enthalpy of formation. [required if |  Real    |  None     |
+|                                           | enthalpy of formation model='constant'].              |          |           |
++-------------------------------------------+-------------------------------------------------------+----------+-----------+
 
 Below is an example for specifying species solver model options.
 
@@ -180,6 +198,12 @@ Below is an example for specifying species solver model options.
    species.H2O.specific_heat.constant = 4186.0
    species.He.specific_heat.constant = 1667.0
 
+   species.enthalpy_of_formation = constant
+
+   species.O2.enthalpy_of_formation.constant = 0
+   species.H2O.enthalpy_of_formation.constant = -15861265.26  # J/kg
+   species.He.enthalpy_of_formation.constant = 0
+
 
 Fluid model settings
 --------------------
@@ -196,54 +220,66 @@ Enabling the fluid solver and specifying fluid model options.
 
 The following inputs must be preceded by the given to the fluid solver e.g., "fluid."
 
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-|                               | Description                                                    |   Type   | Default   |
-+===============================+================================================================+==========+===========+
-| density                       | Specify which density model to use for fluid [required].       | String   |  None     |
-|                               | Available options include:                                     |          |           |
-|                               |                                                                |          |           |
-|                               | * 'constant' for constant density model                        |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| density.constant              | Value of constant fluid density [required if density=          |  Real    |  None     |
-|                               | 'constant'].                                                   |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| molecular_weight              | Specify which molecular weight model to use for fluid.         | String   | Constant  |
-|                               | Available options include:                                     |          |           |
-|                               |                                                                |          |           |
-|                               | * 'constant' for constant molecular weight model               |          |           |
-|                               | * 'mixture' for species-mixture molecular weight model         |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| molecular_weight.constant     | Value of constant fluid molecular weight [required if          |  Real    |    0      |
-|                               | molecular_weight='constant'].                                  |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| viscosity                     | Specify which viscosity model to use for fluid [required].     | String   |  None     |
-|                               | Available options include:                                     |          |           |
-|                               |                                                                |          |           |
-|                               | * 'constant' for constant viscosity model                      |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| viscosity.constant            | Value of constant fluid viscosity [required if                 |  Real    |  None     |
-|                               | viscosity_model='constant'].                                   |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| specific_heat                 | Specify which specific heat model to use for fluid [required   | String   |  None     |
-|                               | if advect_enthalpy]. Available options include:                |          |           |
-|                               |                                                                |          |           |
-|                               | * 'constant' for constant specific heat model                  |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| specific_heat.constant        | Value of constant fluid specific heat [required if             |  Real    |  None     |
-|                               | specific_heat_model='constant'].                               |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| thermal_conductivity          | Specify which thermal conductivity model to use for fluid      | String   |  None     |
-|                               | [required if advect_enthalpy=1]. available options include:    |          |           |
-|                               |                                                                |          |           |
-|                               | * 'constant' for constant thermal conductivity model           |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| thermal_conductivity.constant | Value of constant fluid thermal conductivity [required if      |  Real    |  None     |
-|                               | thermal_conductivity_model='constant'].                        |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
-| species                       | Specify which species can constitute the fluid phase           | String   |  None     |
-|                               | [defined species must be a subset of the species.solve         |          |           |
-|                               | arguments]                                                     |          |           |
-+-------------------------------+----------------------------------------------------------------+----------+-----------+
++------------------------------------------+---------------------------------------------------------+--------+----------+
+|                                          | Description                                             | Type   | Default  |
++==========================================+=========================================================+========+==========+
+| density                                  | Specify which density model to use for fluid            | String |  None    |
+|                                          | [required]. Available options include:                  |        |          |
+|                                          |                                                         |        |          |
+|                                          | * 'constant' for constant density model                 |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| density.constant                         | Value of constant fluid density [required if density=   |  Real  |  None    |
+|                                          | 'constant'].                                            |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| molecular_weight                         | Specify which molecular weight model to use for fluid.  | String | Constant |
+|                                          | Available options include:                              |        |          |
+|                                          |                                                         |        |          |
+|                                          | * 'constant' for constant molecular weight model        |        |          |
+|                                          | * 'mixture' for species-mixture molecular weight model  |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| molecular_weight.constant                | Value of constant fluid molecular weight [required if   |  Real  |    0     |
+|                                          | molecular_weight='constant'].                           |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| viscosity                                | Specify which viscosity model to use for fluid          | String |  None    |
+|                                          | [required]. Available options include:                  |        |          |
+|                                          |                                                         |        |          |
+|                                          | * 'constant' for constant viscosity model               |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| viscosity.constant                       | Value of constant fluid viscosity [required if          |  Real  |  None    |
+|                                          | viscosity_model='constant'].                            |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| specific_heat                            | Specify which specific heat model to use for fluid      | String |  None    |
+|                                          | [required if advect_enthalpy]. Available options        |        |          |
+|                                          | include:                                                |        |          |
+|                                          |                                                         |        |          |
+|                                          | * 'constant' for constant specific heat model           |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| specific_heat.constant                   | Value of constant fluid specific heat [required if      |  Real  |  None    |
+|                                          | specific_heat_model='constant'].                        |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| thermal_conductivity                     | Specify which thermal conductivity model to use for     | String |  None    |
+|                                          | fluid [required if advect_enthalpy=1]. available        |        |          |
+|                                          | options include:                                        |        |          |
+|                                          |                                                         |        |          |
+|                                          | * 'constant' for constant thermal conductivity model    |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| thermal_conductivity.constant            | Value of constant fluid thermal conductivity [required  |  Real  |  None    |
+|                                          | if thermal_conductivity_model='constant'].              |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| reference_temperature                    | Value of the reference temperature used for specific    |  Real  |  0       |
+|                                          | enthalpy                                                |  Real  |  0       |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| species                                  | Specify which species can constitute the fluid phase    | String |  None    |
+|                                          | [defined species must be a subset of the species.solve  |        |          |
+|                                          | arguments]                                              |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| species.[species0].specific_heat         | Specify species0 specific heat if it is different than  |  Real  |  0       |
+|                                          | the value specified in the species model settings       |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
+| species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation if it is         |  Real  |  0       |
+|                                          | different than the value specified in the species       |        |          |
+|                                          | model settings                                          |        |          |
++------------------------------------------+---------------------------------------------------------+--------+----------+
 
 Below is an example for specifying fluid solver model options.
 
@@ -265,7 +301,19 @@ Below is an example for specifying fluid solver model options.
    myfluid.thermal_conductivity = constant
    myfluid.thermal_conductivity.constant = 0.024
 
+   myfluid.reference_temperature = 298.15
+
    myfluid.species = O2 He
+
+   # this is optional. it has to be specified in case it is different than 
+   # the value passed in the species section
+   myfluid.species.O2.specific_heat = 918.0
+   myfluid.species.He.specific_heat = 1667.0
+
+   # this is optional. it has to be specified in case it is different than 
+   # the value passed in the species section
+   myfluid.species.O2.enthalpy_of_formation = 0
+   myfluid.species.He.enthalpy_of_formation = 0
 
 
 Solids model settings
@@ -284,29 +332,47 @@ models.
 
 The following inputs define the single solids properties.
 
-+------------------------------------+--------------------------------------------------------+----------+-----------+
-|                                    | Description                                            |   Type   | Default   |
-+====================================+========================================================+==========+===========+
-| [solid0].molecular_weight          | Specify which molecular weight model to use for solid. |  String  |  Constant |
-|                                    | Available options include:                             |          |           |
-|                                    |                                                        |          |           |
-|                                    | * 'constant' for constant molecular weight model       |          |           |
-+------------------------------------+--------------------------------------------------------+----------+-----------+
-| [solid0].molecular_weight.constant | Value of constant solid molecular weight [required if  |  Real    |  0        |
-|                                    | molecular_weight='constant'].                          |          |           |
-+------------------------------------+--------------------------------------------------------+----------+-----------+
-| [solid0].specific_heat             | Specify which specific heat model to use for solid.    |  String  |  None     |
-|                                    | Available options include:                             |          |           |
-|                                    |                                                        |          |           |
-|                                    | * 'constant' for constant specific heat model          |          |           |
-+------------------------------------+--------------------------------------------------------+----------+-----------+
-| [solid0].specific_heat.constant    | Value of species molecular weight. [required if        |  Real    |  0        |
-|                                    | fluid.specific_heat='constant'].                       |          |           |
-+------------------------------------+--------------------------------------------------------+----------+-----------+
-| [solid0].species                   | Specify which species can constitute the fluid phase   |  String  |  None     |
-|                                    | [defined species must be a subset of the species.solve |          |           |
-|                                    | arguments].                                            |          |           |
-+------------------------------------+--------------------------------------------------------+----------+-----------+
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+|                                                   | Description                             |   Type   | Default   |
++===================================================+=========================================+==========+===========+
+| [solid0].molecular_weight                         | Specify which molecular weight model to |  String  |  Constant |
+|                                                   | use for solid. Available options        |          |           |
+|                                                   | include:                                |          |           |
+|                                                   |                                         |          |           |
+|                                                   | * 'constant' for constant molecular     |          |           |
+|                                                   |   weight model                          |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].molecular_weight.constant                | Value of constant solid molecular       |  Real    |  0        |
+|                                                   | weight [required if molecular_weight =  |          |           |
+|                                                   | 'constant'].                            |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].specific_heat                            | Specify which specific heat model to    |  String  |  None     |
+|                                                   | use for solid. Available options        |          |           |
+|                                                   | include:                                |          |           |
+|                                                   |                                         |          |           |
+|                                                   | * 'constant' for constant specific heat |          |           |
+|                                                   |   model                                 |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].specific_heat.constant                   | Value of species molecular weight.      |  Real    |  0        |
+|                                                   | [required if fluid.specific_heat =      |          |           |
+|                                                   | 'constant'].                            |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].reference_temperature                    | Value of the reference temperature used |  Real    |  0        |
+|                                                   | for specific enthalpy                   |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].species                                  | Specify which species can constitute    |  String  |  None     |
+|                                                   | the fluid phase [defined species must   |          |           |
+|                                                   | be a subset of the species.solve        |          |           |
+|                                                   | arguments].                             |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].species.[species0].specific_heat         | Specify species0 specific heat if it is |  Real    |  0        |
+|                                                   | different than the value specified in   |          |           |
+|                                                   | the species model settings              |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
+| [solid0].species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation  |  Real    |  0        |
+|                                                   | if it is different than the value       |          |           |
+|                                                   | specified in the species model settings |          |           |
++---------------------------------------------------+-----------------------------------------+----------+-----------+
 
 Below is an example for specifying the solids solver model options.
 
@@ -317,10 +383,20 @@ Below is an example for specifying the solids solver model options.
    mysolid.molecular_weight = constant
    mysolid.molecular_weight.constant = 18.01528
 
+   mysolid.reference_temperature = 298.15
+
    mysolid.specific_heat = constant
-   mysolid.specific_heat.constant = 918
+   mysolid.specific_heat.constant = 4186
 
    mysolid.species = H2O
+
+   # this is optional. it has to be specified in case it is different than 
+   # the value passed in the species section
+   mysolid.species.H20.specific_heat = 4186.0
+
+   # this is optional. it has to be specified in case it is different than 
+   # the value passed in the species section
+   mysolid.species.H2O.enthalpy_of_formation = -15861265.26
 
 
 Chemical Reactions model settings
