@@ -98,32 +98,35 @@ MFIX-Exa settings
 
 The following inputs must be preceded by "mfix."
 
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-|                        | Description                                                       |   Type   | Default   |
-+========================+===================================================================+==========+===========+
-| geometry               | Which type of EB geometry are we using?                           |   String |           |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| levelset__refinement   | Refinement factor of levelset resolution relative to level 0      |   Int    | 1         |
-|                        | resolution                                                        |          |           |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| po_no_par_out          | Let particles exit (default) or bounce-back at pressure outflows  |   Int    | 0         |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| gravity                | Gravity vector (e.g., mfix.gravity = -9.81  0.0  0.0) [required]  |   Reals  | 0 0 0     |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| advect_density         | Switch for turning ON (1) or OFF (0) fluid density evolution      |   Int    | 0         |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| advect_enthalpy        | Switch for turning ON (1) or OFF (0) fluid temperature evolution  |   Int    | 0         |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| advect_fluid_species   | Switch for turning ON (1) or OFF (0) fluid species mass fraction  |   Int    | 0         |
-|                        | evolution                                                         |          |           |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| solve_reactions        | Switch for turning ON (1) or OFF (0) inter/intra-phase chemical   |   Int    | 0         |
-|                        | reactions                                                         |          |           |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
-| ideal_gas_constraint   | Turn this ON to impose an open/closed system ideal-gas constraint |   String | None      |
-|                        | Default is 'None' (no ideal-gas constraint). To activate it, pass |          |           |
-|                        | 'OpenSystem' or 'ClosedSystem' (case-insensitive)                 |          |           |
-+------------------------+-------------------------------------------------------------------+----------+-----------+
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+|                        | Description                                                       |   Type   | Default             |
++========================+===================================================================+==========+=====================+
+| geometry               | Which type of EB geometry are we using?                           |   String |                     |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| levelset__refinement   | Refinement factor of levelset resolution relative to level 0      |   Int    | 1                   |
+|                        | resolution                                                        |          |                     |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| po_no_par_out          | Let particles exit (default) or bounce-back at pressure outflows  |   Int    | 0                   |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| gravity                | Gravity vector (e.g., mfix.gravity = -9.81  0.0  0.0) [required]  |   Reals  | 0 0 0               |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| advect_density         | Switch for turning ON (1) or OFF (0) fluid density evolution      |   Int    | 0                   |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| advect_enthalpy        | Switch for turning ON (1) or OFF (0) fluid temperature evolution  |   Int    | 0                   |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| advect_fluid_species   | Switch for turning ON (1) or OFF (0) fluid species mass fraction  |   Int    | 0                   |
+|                        | evolution                                                         |          |                     |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| solve_reactions        | Switch for turning ON (1) or OFF (0) inter/intra-phase chemical   |   Int    | 0                   |
+|                        | reactions                                                         |          |                     |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| constraint_type        | Select which constraint to apply to the problem.                  |   String | IncompressibleFluid |
+|                        | Available options include:                                        |          |                     |
+|                        |                                                                   |          |                     |
+|                        | * 'incompressiblefluid' for incompressibility constraint          |          |                     |
+|                        | * 'idealgasopensystem' for Ideal Gas-Open System constraint       |          |                     |
+|                        | * 'idealgasclosedsystem' for Ideal Gas-Closed System constraint   |          |                     |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
 
 
 Species model settings
@@ -231,14 +234,7 @@ The following inputs must be preceded by the given to the fluid solver e.g., "fl
 | density.constant                         | Value of constant fluid density [required if density=   |  Real  |  None    |
 |                                          | 'constant'].                                            |        |          |
 +------------------------------------------+---------------------------------------------------------+--------+----------+
-| molecular_weight                         | Specify which molecular weight model to use for fluid.  | String | Constant |
-|                                          | Available options include:                              |        |          |
-|                                          |                                                         |        |          |
-|                                          | * 'constant' for constant molecular weight model        |        |          |
-|                                          | * 'mixture' for species-mixture molecular weight model  |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| molecular_weight.constant                | Value of constant fluid molecular weight [required if   |  Real  |    0     |
-|                                          | molecular_weight='constant'].                           |        |          |
+| molecular_weight                         | Value of constant fluid molecular weight                |  Real  |    0     |
 +------------------------------------------+---------------------------------------------------------+--------+----------+
 | viscosity                                | Specify which viscosity model to use for fluid          | String |  None    |
 |                                          | [required]. Available options include:                  |        |          |
@@ -335,16 +331,8 @@ The following inputs define the single solids properties.
 +---------------------------------------------------+-----------------------------------------+----------+-----------+
 |                                                   | Description                             |   Type   | Default   |
 +===================================================+=========================================+==========+===========+
-| [solid0].molecular_weight                         | Specify which molecular weight model to |  String  |  Constant |
-|                                                   | use for solid. Available options        |          |           |
-|                                                   | include:                                |          |           |
-|                                                   |                                         |          |           |
-|                                                   | * 'constant' for constant molecular     |          |           |
-|                                                   |   weight model                          |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].molecular_weight.constant                | Value of constant solid molecular       |  Real    |  0        |
-|                                                   | weight [required if molecular_weight =  |          |           |
-|                                                   | 'constant'].                            |          |           |
+| [solid0].molecular_weight                         | Value of constant solid molecular       |  Real    |  0        |
+|                                                   | weight                                  |          |           |
 +---------------------------------------------------+-----------------------------------------+----------+-----------+
 | [solid0].specific_heat                            | Specify which specific heat model to    |  String  |  None     |
 |                                                   | use for solid. Available options        |          |           |
