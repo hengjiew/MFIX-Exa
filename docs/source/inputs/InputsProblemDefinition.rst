@@ -114,7 +114,7 @@ The following inputs must be preceded by "mfix."
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
 | advect_enthalpy        | Switch for turning ON (1) or OFF (0) fluid temperature evolution  |   Int    | 0                   |
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
-| advect_fluid_species   | Switch for turning ON (1) or OFF (0) fluid species mass fraction  |   Int    | 0                   |
+| solve_species          | Switch for turning ON (1) or OFF (0) fluid species mass fraction  |   Int    | 0                   |
 |                        | evolution                                                         |          |                     |
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
 | solve_reactions        | Switch for turning ON (1) or OFF (0) inter/intra-phase chemical   |   Int    | 0                   |
@@ -157,7 +157,7 @@ The following inputs must be preceded by the "species." prefix
 |                                           |                                                       |          |           |
 |                                           | * 'constant' for constant diffusivity model           |          |           |
 +-------------------------------------------+-------------------------------------------------------+----------+-----------+
-| [specie0].diffusivity.constant            | Value of constant species diffusivity. [required if   |  Real    |  None     |
+| diffusivity.constant                      | Value of constant species diffusivity. [required if   |  Real    |  None     |
 |                                           | diffusivity_model='constant'].                        |          |           |
 +-------------------------------------------+-------------------------------------------------------+----------+-----------+
 | specific_heat                             | Specify which specific heat model to use for species  | String   |  None     |
@@ -165,18 +165,17 @@ The following inputs must be preceded by the "species." prefix
 |                                           | Available options include:                            |          |           |
 |                                           |                                                       |          |           |
 |                                           | * 'constant' for constant specific heat model         |          |           |
+|                                           | * 'nasa7-poly' for NASA7 Polynomials model            |          |           |
 +-------------------------------------------+-------------------------------------------------------+----------+-----------+
 | [specie0].specific_heat.constant          | Value of constant species diffusivity. [required if   |  Real    |  None     |
 |                                           | diffusivity model='constant'].                        |          |           |
 +-------------------------------------------+-------------------------------------------------------+----------+-----------+
-| enthalpy_of_formation                     | Specify which enthalpy of formation model to use for  | String   |  None     |
-|                                           | species.                                              |          |           |
-|                                           | Available options include:                            |          |           |
-|                                           |                                                       |          |           |
-|                                           | * 'constant' for constant enthalpy of formation model |          |           |
+| [specie0].specific_heat.NASA7.a[i]        | Value of i-th coefficient, with i=0,..,6 for NASA7    |  Real    |  None     |
+|                                           | polynomial coefficient [required if specific heat     |          |           |
+|                                           | model='NASA7-Poly'].                                  |          |           |
 +-------------------------------------------+-------------------------------------------------------+----------+-----------+
-| [specie0].enthalpy_of_formation.constant  | Value of constant enthalpy of formation. [required if |  Real    |  None     |
-|                                           | enthalpy of formation model='constant'].              |          |           |
+| [specie0].enthalpy_of_formation           | Value of constant enthalpy of formation. [required if |  Real    |  None     |
+|                                           | specific heat model='constant'].                      |          |           |
 +-------------------------------------------+-------------------------------------------------------+----------+-----------+
 
 Below is an example for specifying species solver model options.
@@ -190,10 +189,7 @@ Below is an example for specifying species solver model options.
    species.He.molecular_weight = 4.0
 
    species.diffusivity = constant
-
-   species.O2.diffusivity.constant = 1.9e-5
-   species.H2O.diffusivity.constant = 2.4e-5
-   species.He.diffusivity.constant = 7.1e-5
+   species.diffusivity.constant = 1.9e-5
 
    species.specific_heat = constant
 
@@ -201,11 +197,9 @@ Below is an example for specifying species solver model options.
    species.H2O.specific_heat.constant = 4186.0
    species.He.specific_heat.constant = 1667.0
 
-   species.enthalpy_of_formation = constant
-
-   species.O2.enthalpy_of_formation.constant = 0
-   species.H2O.enthalpy_of_formation.constant = -15861265.26  # J/kg
-   species.He.enthalpy_of_formation.constant = 0
+   species.O2.enthalpy_of_formation = 0
+   species.H2O.enthalpy_of_formation = -15861265.26  # J/kg
+   species.He.enthalpy_of_formation = 0
 
 
 Fluid model settings
@@ -690,7 +684,7 @@ For a fluid phase, the following inputs can be defined.
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 | delp                | Pressure drop (Pa)                                                    | Real        | 0.0       |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| species.[species0]  | Species 'species0' mass fraction [required if advect_fluid_species=1  | Real        | None      |
+| species.[species0]  | Species 'species0' mass fraction [required if solve_species=1         | Real        | None      |
 |                     | and bc_region_type='mi' or 'pi'].                                     |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
