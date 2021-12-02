@@ -1,3 +1,6 @@
+.. role:: cpp(code)
+   :language: c++
+
 Particles on GPUs
 ==========================
 
@@ -8,9 +11,9 @@ The core components of the particle method in MFIX-Exa are:
 - Particle-Particle Collisions
 - Particle-Wall Collisions
 
-Of these operations, the neighbor list construction requires the most care. 
-A neighbor list is a pre-computed list of all the neighbors a given particle can interact with over the next *n* timesteps. 
-Neighbor lists are usually constructed by binning the particles by an interaction distance, 
+Of these operations, the neighbor list construction requires the most care.
+A neighbor list is a pre-computed list of all the neighbors a given particle can interact with over the next *n* timesteps.
+Neighbor lists are usually constructed by binning the particles by an interaction distance,
 and then performing the N\ :sup:`2` distance check only on the particles in neighboring bins. In detail, the CPU version of the neighbor list algorithm is as follows:
 
 - For each tile on each level, loop over the particles, identifying the bin it belongs to.
@@ -31,7 +34,7 @@ The final on-grid neighbor list data structure consists of two arrays. First, we
 
 .. code-block:: c
 
-       // now we loop over the neighbor list and compute the forces                                                                                                                                                
+       // now we loop over the neighbor list and compute the forces
         AMREX_FOR_1D ( np, i,
         {
             ParticleType& p1 = pstruct[i];
@@ -50,9 +53,20 @@ The final on-grid neighbor list data structure consists of two arrays. First, we
 
 Note that, because of our use of managed memory to store the particle data and the neighbor list, the above code will work when compiled for either CPU or GPU.
 
-The above algorithm deals with constructing a neighbor list for the particles on a single grid. When domain decomposition is used, one must also make copies of particles on adjacent grids, potentially performing the necessary MPI communication for grids associated with other processes. The routines `fillNeighbors`, which computes which particles needed to be ghosted to which grid, and `updateNeighbors`, which copies up-to-date data for particles that have already been ghosted, have also been offloaded to the GPU, using techniques similar to AMReX's `Redistribute` routine. The important thing for users is that calling these functions does not trigger copying data off the GPU.
+The above algorithm deals with constructing a neighbor list for the particles on a single grid.
+When domain decomposition is used, one must also make copies of particles on adjacent grids,
+potentially performing the necessary MPI communication for grids associated with other processes.
+The routines `fillNeighbors`, which computes which particles needed to be ghosted to which grid, and `updateNeighbors`,
+which copies up-to-date data for particles that have already been ghosted, have also been offloaded to the GPU,
+using techniques similar to AMReX's `Redistribute` routine.
 
-Once the neighbor list has been constructed, collisions with both particles and walls can easily be processed. 
+Note that when the particles are dense, only a small portion of the ghost particles are neighbors to the particles
+inside the grids. AMReX provides a function `selectActualNeighbors` to filter out the ghost particles that will
+not be used for building the neighbor list. So the subsequent calls to `updateNeighbors` can avoid transferring
+these unused ghost particles, which significantly reduces the communication cost in some tests.
+To use this optimization, set `particles.reduceGhostParticles` to :cpp:`true` in MFiX-Exa's inputs.
+
+Once the neighbor list has been constructed, collisions with both particles and walls can easily be processed.
 
 MFiX-Exa currently runs on both CPU-only and hybrid CPU/GPU architectures.
 

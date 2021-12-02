@@ -11,7 +11,7 @@ Load Balancing
 
 The process of load balancing is typically independent of the process of grid creation;
 the inputs to load balancing are a given set of grids with a set of weights
-assigned to each grid. 
+assigned to each grid.
 
 Single-level load balancing algorithms are sequentially applied to each AMR level independently,
 and the resulting distributions are mapped onto the ranks taking into account the weights
@@ -28,3 +28,7 @@ Options supported by AMReX include:
 
 - Round-robin: sort grids and assign them to ranks in round-robin fashion -- specifically
   FAB ``i`` is owned by CPU ``i % N`` where N is the total number of MPI ranks.
+
+These methods work for both fluid and particle grids if dual-grid is enabled. MFiX-Exa also supports
+a Greedy load balancing algorithm for particle grids. It balances the particle counts per rank and
+aligns particle grids with fluid grids to minimize the data-transfer between two grids.
