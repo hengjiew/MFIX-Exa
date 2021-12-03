@@ -31,7 +31,15 @@ These control the nodal projection and must be preceded by "nodal_proj":
 |                         |  If set to 0, the bottom solver will be called at the current level   |             |              |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_solver           |  Which bottom solver to use in the nodal projection                   |  String     |   bicgcg     |
+|                         |                                                                       |             |              | 
 |                         |  Options are bicgcg, bicgstab, cg, cgbicg, smoother or hypre          |             |              | 
++-------------------------+-----------------------------------------------------------------------+-------------+--------------+
+| hypre_namespace         |  Namespace to use in the nodal projection when using hypre            |  String     |   hypre      |
+|                         |  to control hypre specific settings. It can be any string.            |             |              | 
++-------------------------+-----------------------------------------------------------------------+-------------+--------------+
+| hypre_interface         |  Which interface to use in the nodal projection when using hypre      |  String     |   ij         |
+|                         |                                                                       |             |              | 
+|                         |  Options are ij, semi_structured or structured                        |             |              | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 
 These control the MAC projection and must be preceded by "mac_proj":
@@ -56,7 +64,15 @@ These control the MAC projection and must be preceded by "mac_proj":
 |                         |  If set to 0, the bottom solver will be called at the current level   |             |              |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_solver           |  Which bottom solver to use in the MAC projection                     |  String     |   bicgcg     |
+|                         |                                                                       |             |              | 
 |                         |  Options are bicgcg, bicgstab, cg, cgbicg, smoother or hypre          |             |              | 
++-------------------------+-----------------------------------------------------------------------+-------------+--------------+
+| hypre_namespace         |  Namespace to use in the MAC projection when using hypre              |  String     |   hypre      |
+|                         |  to control hypre specific settings. It can be any string.            |             |              | 
++-------------------------+-----------------------------------------------------------------------+-------------+--------------+
+| hypre_interface         |  Which interface to use in the MAC projection when using hypre        |  String     |   ij         |
+|                         |                                                                       |             |              | 
+|                         |  Options are ij, semi_structured or structured                        |             |              | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 
 These control the diffusion solver and must be preceded by "diffusion":
@@ -81,5 +97,13 @@ These control the diffusion solver and must be preceded by "diffusion":
 |                         |  If set to 0, the bottom solver will be called at the current level   |             |              |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_solver           |  Which bottom solver to use in the diffusion solve                    |  String     |   bicgcg     |
+|                         |                                                                       |             |              | 
 |                         |  Options are bicgcg, bicgstab, cg, cgbicg, smoother or hypre          |             |              | 
++-------------------------+-----------------------------------------------------------------------+-------------+--------------+
+| hypre_namespace         |  Namespace to use in the diffusion solve when using hypre             |  String     |   hypre      |
+|                         |  to control hypre specific settings. It can be any string.            |             |              | 
++-------------------------+-----------------------------------------------------------------------+-------------+--------------+
+| hypre_interface         |  Which interface to use in the diffusion solve when using hypre       |  String     |   ij         |
+|                         |                                                                       |             |              | 
+|                         |  Options are ij, semi_structured or structured                        |             |              | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
