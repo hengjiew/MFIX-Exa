@@ -1,3 +1,6 @@
+.. role:: cpp(code)
+   :language: c++
+
 .. _Chap:InputsLoadBalancing:
 
 Gridding and Load Balancing
@@ -35,25 +38,27 @@ The following inputs must be preceded by "fabarray_mfiter" and determine how we 
 
 The following inputs must be preceded by "particles"
 
-+-------------------+-----------------------------------------------------------------------+-------------+--------------+
-|                   | Description                                                           |   Type      | Default      |
-+===================+=======================================================================+=============+==============+
-| max_grid_size_x   | Maximum number of cells at level 0 in each grid in x-direction        |    Int      | 32           |
-|                   | for grids in the ParticleBoxArray if dual_grid is true                |             |              |
-+-------------------+-----------------------------------------------------------------------+-------------+--------------+
-| max_grid_size_y   | Maximum number of cells at level 0 in each grid in y-direction        |    Int      | 32           |
-|                   | for grids in the ParticleBoxArray if dual_grid is true                |             |              |
-+-------------------+-----------------------------------------------------------------------+-------------+--------------+
-| max_grid_size_z   | Maximum number of cells at level 0 in each grid in z-direction        |    Int      | 32           |
-|                   | for grids in the ParticleBoxArray if dual_grid is true.               |             |              |
-+-------------------+-----------------------------------------------------------------------+-------------+--------------+
-| tile_size         | Maximum number of cells in each direction for (logical) tiles         |  IntVect    | 1024000,8,8  |
-|                   | in the ParticleBoxArray if dual_grid is true.                         |             |              |
-+-------------------+-----------------------------------------------------------------------+-------------+--------------+
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
+|                      | Description                                                           |   Type      | Default      |
++======================+=======================================================================+=============+==============+
+| max_grid_size_x      | Maximum number of cells at level 0 in each grid in x-direction        |    Int      | 32           |
+|                      | for grids in the ParticleBoxArray if dual_grid is true                |             |              |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
+| max_grid_size_y      | Maximum number of cells at level 0 in each grid in y-direction        |    Int      | 32           |
+|                      | for grids in the ParticleBoxArray if dual_grid is true                |             |              |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
+| max_grid_size_z      | Maximum number of cells at level 0 in each grid in z-direction        |    Int      | 32           |
+|                      | for grids in the ParticleBoxArray if dual_grid is true.               |             |              |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
+| tile_size            | Maximum number of cells in each direction for (logical) tiles         |  IntVect    | 1024000,8,8  |
+|                      | in the ParticleBoxArray if dual_grid is true.                         |             |              |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
+| reduceGhostParticles | whether to remove unused ghost particles                              |    Bool     | false        |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
 
-Note that when running a granular simulation, i.e., no fluid phase, :cpp:`mfix.dual_grid` must be 0. Hence, 
-the :cpp:`particles.max_grid_size` (in each direction) have no meaning. Therefore the fluid grid and tile 
-sizes should be set for particle load balancing. It may also be necessary to set the blocking factors to 1. 
+Note that when running a granular simulation, i.e., no fluid phase, :cpp:`mfix.dual_grid` must be 0. Hence,
+the :cpp:`particles.max_grid_size` (in each direction) have no meaning. Therefore the fluid grid and tile
+sizes should be set for particle load balancing. It may also be necessary to set the blocking factors to 1.
 
 
 The following inputs must be preceded by "mfix" and determine how we load balance:
@@ -66,11 +71,11 @@ The following inputs must be preceded by "mfix" and determine how we load balanc
 | load_balance_fluid   | Only relevant if (dual_grid); if so do we also regrid mesh data       |  Int        | 1            |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
 | load_balance_type    | What strategy to use for load balancing                               |  String     | KnapSack     |
-|                      | Options are "KnapSack"or "SFC"                                        |             |              |
+|                      | Options are "KnapSack", "SFC", or "Greedy"                            |             |              |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
 | knapsack_weight_type | What weighting function to use if using Knapsack load balancing       |  String     | RunTimeCosts |
 |                      | Options are "RunTimeCosts" or "NumParticles""                         |             |              |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
-| knapsack_nmax        | Maximum number of grids per MPI process if using knapsack algorithm   |  Int        | 128          | 
+| knapsack_nmax        | Maximum number of grids per MPI process if using knapsack algorithm   |  Int        | 128          |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
 
