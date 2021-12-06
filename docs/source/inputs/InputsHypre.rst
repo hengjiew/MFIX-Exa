@@ -6,7 +6,7 @@ Hypre Inputs
 The following inputs control the hypre settings and are read directly 
 by AMReX when we use hypre as the bottom solver, i.e., when 
 :cpp:`nodal_proj.bottom_solver = hypre` and/or when 
-  :cpp:`mac_proj.bottom_solver = hypre` (see :ref:`Chap:InputsMultigrid`)
+:cpp:`mac_proj.bottom_solver = hypre` (see :ref:`Chap:InputsMultigrid`)
 These settings must be preceded by the hypre_namespace setting corresponding 
 to the solver (see :ref:`Chap:InputsMultigrid`).
 

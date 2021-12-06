@@ -101,12 +101,5 @@ These control the diffusion solver and must be preceded by "diffusion":
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_solver           |  Which bottom solver to use in the diffusion solve                    |  String     |   bicgcg     |
 |                         |                                                                       |             |              | 
-|                         |  Options are bicgcg, bicgstab, cg, cgbicg, smoother or hypre          |             |              | 
-+-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| hypre_namespace         |  Namespace to use in the diffusion solve when using hypre             |  String     |   hypre      |
-|                         |  to control hypre specific settings. It can be any string.            |             |              | 
-+-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| hypre_interface         |  Which interface to use in the diffusion solve when using hypre       |  String     |   ij         |
-|                         |                                                                       |             |              | 
-|                         |  Options are ij, semi_structured or structured                        |             |              | 
+|                         |  Options are bicgcg, bicgstab, cg, cgbicg, or smoother                |             |              | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
