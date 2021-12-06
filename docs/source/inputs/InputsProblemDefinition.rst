@@ -117,9 +117,6 @@ The following inputs must be preceded by "mfix."
 | solve_species          | Switch for turning ON (1) or OFF (0) fluid species mass fraction  |   Int    | 0                   |
 |                        | evolution                                                         |          |                     |
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
-| solve_reactions        | Switch for turning ON (1) or OFF (0) inter/intra-phase chemical   |   Int    | 0                   |
-|                        | reactions                                                         |          |                     |
-+------------------------+-------------------------------------------------------------------+----------+---------------------+
 | constraint_type        | Select which constraint to apply to the problem.                  |   String | IncompressibleFluid |
 |                        | Available options include:                                        |          |                     |
 |                        |                                                                   |          |                     |
@@ -557,6 +554,8 @@ The name of the DEM phases to be defined in the IC region and the packing must b
 |                     | * pseudo_random                                                |             |           |
 |                     | * oneper -- one particle per cell                              |             |           |
 |                     | * eightper -- eight particles per cell                         |             |           |
+|                     | * n-cube -- n^3 particles per cell where n is an integer       |             |           |
+|                     | (NOTE: oneper is equivalent to 1-cube and eightper to 2-cube)  |             |           |
 +---------------------+----------------------------------------------------------------+-------------+-----------+
 
 For each solid, the following inputs may be defined.
