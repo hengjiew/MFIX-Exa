@@ -4,13 +4,20 @@ Hypre Inputs
 =============
 
 The following inputs control the hypre settings and are read directly 
-by AMReX when we use hypre as the bottom solver.
+by AMReX when we use hypre as the bottom solver, i.e., when 
+:cpp:`nodal_proj.bottom_solver = hypre` and/or when 
+  :cpp:`mac_proj.bottom_solver = hypre` (see :ref:`Chap:InputsMultigrid`)
+These settings must be preceded by the hypre_namespace setting corresponding 
+to the solver (see :ref:`Chap:InputsMultigrid`).
 
-NOTE: Default uses the same hypre namespace "hypre" for all solvers. However, 
-the hypre namespace can be set at the solver level and the hypre settings 
-can be configured for each MLMG solver.
+NOTE: If either the :cpp:`nodal_proj` or :cpp:`mac_proj` bottom solvers are 
+set to :cpp:`hypre`, the default behavior is to set the `hypre_namespace = "hypre"`. 
+In that case, the settings below should be preceded by the (default) hypre namespace, 
+:cpp:`hypre`, and apply to either or all solvers which use hypre. However, 
+the hypre namespace can be set at the solver level so that the hypre settings 
+can be configured for each MLMG solver. In which case, the settings below should be 
+preceded by the solver specific :cpp:`hypre_namespace`. 
 
-These settings must be preceded by the hypre_namespace setting corresponding to the solver (see :ref:`Chap:InputsMultigrid`)
 
 +-----------------------------------+-----------------------------------------------------------------------+-------------+--------------+
 |                                   |  Description                                                          |   Type      | Default      |
