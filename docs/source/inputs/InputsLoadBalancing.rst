@@ -78,4 +78,6 @@ The following inputs must be preceded by "mfix" and determine how we load balanc
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
 | knapsack_nmax        | Maximum number of grids per MPI process if using knapsack algorithm   |  Int        | 128          |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
+| greedy_dir           | The direction in which the Greedy algorithm cuts overloaded boxes     |  Int        | 0            |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
 
