@@ -11,7 +11,7 @@ These settings must be preceded by the hypre_namespace setting corresponding
 to the solver (see :ref:`Chap:InputsMultigrid`).
 
 NOTE: If either the :cpp:`nodal_proj` or :cpp:`mac_proj` bottom solvers are 
-set to :cpp:`hypre`, the default behavior is to set the `hypre_namespace = "hypre"`. 
+set to :cpp:`hypre`, the default behavior is to set the :cpp:`hypre_namespace = "hypre"`. 
 In that case, the settings below should be preceded by the (default) hypre namespace, 
 :cpp:`hypre`, and apply to either or all solvers which use hypre. However, 
 the hypre namespace can be set at the solver level so that the hypre settings 
