@@ -80,4 +80,7 @@ The following inputs must be preceded by "mfix" and determine how we load balanc
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
 | greedy_dir           | The direction in which the Greedy algorithm cuts overloaded boxes     |  Int        | 0            |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
+| grid_pruning         | Remove all covered grids from the base mesh; this may result in       |  Bool       | False        |
+|                      | disjoined grids                                                       |             |              |
++----------------------+-----------------------------------------------------------------------+-------------+--------------+
 
