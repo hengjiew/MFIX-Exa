@@ -18,9 +18,9 @@ These control the nodal projection and must be preceded by "nodal_proj":
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_verbose          |  Verbosity of BiCGStab solver in nodal projection                     |    Int      |   0          |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| rtol                    |  Relative tolerance in nodal projection                               |    Real     |   1.e-11     | 
+| mg_rtol                 |  Relative tolerance in nodal projection                               |    Real     |   1.e-11     | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| atol                    |  Absolute tolerance in nodal projection                               |    Real     |   1.e-14     | 
+| mg_atol                 |  Absolute tolerance in nodal projection                               |    Real     |   1.e-14     | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | maxiter                 |  Maximum number of iterations in the nodal projection                 |    Int      |   100        | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
@@ -51,9 +51,9 @@ These control the MAC projection and must be preceded by "mac_proj":
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_verbose          |  Verbosity of BiCGStab solver in MAC projection                       |    Int      |   0          |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| rtol                    |  Relative tolerance in MAC projection                                 |    Real     |   1.e-11     | 
+| mg_rtol                 |  Relative tolerance in MAC projection                                 |    Real     |   1.e-11     | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| atol                    |  Absolute tolerance in MAC projection                                 |    Real     |   1.e-14     | 
+| mg_atol                 |  Absolute tolerance in MAC projection                                 |    Real     |   1.e-14     | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | maxiter                 |  Maximum number of iterations in the MAC projection                   |    Int      |   200        | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
@@ -87,9 +87,9 @@ These control the diffusion solver and must be preceded by "diffusion":
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | bottom_verbose          |  Verbosity of BiCGStab solver in diffusion solve                      |    Int      |   0          |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| rtol                    |  Relative tolerance in diffusion solve                                |    Real     |   1.e-11     | 
+| mg_rtol                 |  Relative tolerance in diffusion solve                                |    Real     |   1.e-11     | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
-| atol                    |  Absolute tolerance in diffusion solve                                |    Real     |   1.e-14     | 
+| mg_atol                 |  Absolute tolerance in diffusion solve                                |    Real     |   1.e-14     | 
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
 | maxiter                 |  Maximum number of iterations in diffusion solve                      |    Int      |   100        |
 +-------------------------+-----------------------------------------------------------------------+-------------+--------------+
