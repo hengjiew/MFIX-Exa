@@ -10,13 +10,15 @@ by AMReX when we use hypre as the bottom solver, i.e., when
 These settings must be preceded by the hypre_namespace setting corresponding 
 to the solver (see :ref:`Chap:InputsMultigrid`).
 
-NOTE: If either the :cpp:`nodal_proj` or :cpp:`mac_proj` bottom solvers are 
-set to :cpp:`hypre`, the default behavior is to set the :cpp:`hypre_namespace = "hypre"`. 
-In that case, the settings below should be preceded by the (default) hypre namespace, 
-:cpp:`hypre`, and apply to either or all solvers which use hypre. However, 
-the hypre namespace can be set at the solver level so that the hypre settings 
-can be configured for each MLMG solver. In which case, the settings below should be 
-preceded by the solver specific :cpp:`hypre_namespace`. 
+NOTE: By default, the MAC and nodal projections use the same settings 
+specified with the namespace :cpp:`hypre`, however the solvers can be configured 
+separately by specifying :cpp:`mac_proj.hypre_namespace` and :cpp:`nodal_proj.hypre_namespace`.
+
+When not using the default namespace :cpp:`hypre`, additional restrictions apply:
+
+#. Both :cpp:`mac_proj.hypre_namespace` and :cpp:`nodal_proj.hypre_namespace` must be set.
+
+#. :cpp:`mac_proj.hypre_namespace` and :cpp:`nodal_proj.hypre_namespace` must be unique.   
 
 
 +-----------------------------------+-----------------------------------------------------------------------+-------------+--------------+
