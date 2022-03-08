@@ -214,59 +214,65 @@ Enabling the fluid solver and specifying fluid model options.
 
 The following inputs must be preceded by the given to the fluid solver e.g., "fluid."
 
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-|                                          | Description                                             | Type   | Default  |
-+==========================================+=========================================================+========+==========+
-| density                                  | Specify which density model to use for fluid            | String |  None    |
-|                                          | [required]. Available options include:                  |        |          |
-|                                          |                                                         |        |          |
-|                                          | * 'constant' for constant density model                 |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| density.constant                         | Value of constant fluid density [required if density=   |  Real  |  None    |
-|                                          | 'constant'].                                            |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| molecular_weight                         | Value of constant fluid molecular weight                |  Real  |    0     |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| viscosity                                | Specify which viscosity model to use for fluid          | String |  None    |
-|                                          | [required]. Available options include:                  |        |          |
-|                                          |                                                         |        |          |
-|                                          | * 'constant' for constant viscosity model               |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| viscosity.constant                       | Value of constant fluid viscosity [required if          |  Real  |  None    |
-|                                          | viscosity_model='constant'].                            |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| specific_heat                            | Specify which specific heat model to use for fluid      | String |  None    |
-|                                          | [required if advect_enthalpy]. Available options        |        |          |
-|                                          | include:                                                |        |          |
-|                                          |                                                         |        |          |
-|                                          | * 'constant' for constant specific heat model           |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| specific_heat.constant                   | Value of constant fluid specific heat [required if      |  Real  |  None    |
-|                                          | specific_heat_model='constant'].                        |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| thermal_conductivity                     | Specify which thermal conductivity model to use for     | String |  None    |
-|                                          | fluid [required if advect_enthalpy=1]. available        |        |          |
-|                                          | options include:                                        |        |          |
-|                                          |                                                         |        |          |
-|                                          | * 'constant' for constant thermal conductivity model    |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| thermal_conductivity.constant            | Value of constant fluid thermal conductivity [required  |  Real  |  None    |
-|                                          | if thermal_conductivity_model='constant'].              |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| reference_temperature                    | Value of the reference temperature used for specific    |  Real  |  0       |
-|                                          | enthalpy                                                |  Real  |  0       |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| species                                  | Specify which species can constitute the fluid phase    | String |  None    |
-|                                          | [defined species must be a subset of the species.solve  |        |          |
-|                                          | arguments]                                              |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| species.[species0].specific_heat         | Specify species0 specific heat if it is different than  |  Real  |  0       |
-|                                          | the value specified in the species model settings       |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
-| species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation if it is         |  Real  |  0       |
-|                                          | different than the value specified in the species       |        |          |
-|                                          | model settings                                          |        |          |
-+------------------------------------------+---------------------------------------------------------+--------+----------+
++------------------------------------------+----------------------------------------------------------+--------+----------+
+|                                          | Description                                              | Type   | Default  |
++==========================================+==========================================================+========+==========+
+| density                                  | Specify which density model to use for fluid             | String |  None    |
+|                                          | [required]. Available options include:                   |        |          |
+|                                          |                                                          |        |          |
+|                                          | * 'constant' for constant density model                  |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| density.constant                         | Value of constant fluid density [required if density=    |  Real  |  None    |
+|                                          | 'constant'].                                             |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| molecular_weight                         | Value of constant fluid molecular weight                 |  Real  |    0     |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| viscosity                                | Specify which viscosity model to use for fluid           | String |  None    |
+|                                          | [required]. Available options include:                   |        |          |
+|                                          |                                                          |        |          |
+|                                          | * 'constant' for constant viscosity model                |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| viscosity.constant                       | Value of constant fluid viscosity [required if           |  Real  |  None    |
+|                                          | viscosity_model='constant'].                             |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| specific_heat                            | Specify which specific heat model to use for fluid       | String |  None    |
+|                                          | [required if advect_enthalpy]. Available options         |        |          |
+|                                          | include:                                                 |        |          |
+|                                          |                                                          |        |          |
+|                                          | * 'constant' for constant specific heat model            |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| specific_heat.constant                   | Value of constant fluid specific heat [required if       |  Real  |  None    |
+|                                          | specific_heat_model='constant'].                         |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| thermal_conductivity                     | Specify which thermal conductivity model to use for      | String |  None    |
+|                                          | fluid [required if advect_enthalpy=1]. available         |        |          |
+|                                          | options include:                                         |        |          |
+|                                          |                                                          |        |          |
+|                                          | * 'constant' for constant thermal conductivity model     |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| thermal_conductivity.constant            | Value of constant fluid thermal conductivity [required   |  Real  |  None    |
+|                                          | if thermal_conductivity_model='constant'].               |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| reference_temperature                    | Value of the reference temperature used for specific     |  Real  |  0       |
+|                                          | enthalpy                                                 |  Real  |  0       |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| species                                  | Specify which species can constitute the fluid phase     | String |  None    |
+|                                          | [defined species must be a subset of the species.solve   |        |          |
+|                                          | arguments]                                               |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| species.[species0].specific_heat         | Specify species0 specific heat if it is different than   |  Real  |  0       |
+|                                          | the value specified in the species model settings        |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation if it is          |  Real  |  0       |
+|                                          | different than the value specified in the species        |        |          |
+|                                          | model settings                                           |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| damped_newton.absolute_tol               | Define absolute tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| damped_newton.relative_tol               | Define relative tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
++------------------------------------------+----------------------------------------------------------+--------+----------+
+| damped_newton.max_iterations             | Define max number of iterations for Damped-Newton solver |  int   |  500     |
++------------------------------------------+----------------------------------------------------------+--------+----------+
 
 Below is an example for specifying fluid solver model options.
 
@@ -309,13 +315,19 @@ Solids model settings
 Enabling the SOLIDS solver and specifying options common to both DEM and PIC
 models.
 
-+-------------------------+----------------------------------------------------------------------+----------+-----------+
-|                         | Description                                                          |   Type   | Default   |
-+=========================+======================================================================+==========+===========+
-| solids.types            | Specified name(s) of the SOLIDS types or None to disable the SOLIDS  | String   |  None     |
-|                         | solver. The user defined names are used to specify DEM and/or PIC    |          |           |
-|                         | model inputs.                                                        |          |           |
-+-------------------------+----------------------------------------------------------------------+----------+-----------+
++------------------------------+----------------------------------------------------------+----------+----------+
+|                              | Description                                              |   Type   | Default  |
++==============================+==========================================================+==========+==========+
+| solids.types                 | Specified name(s) of the SOLIDS types or None to disable | String   |  None    |
+|                              | the SOLIDS solver. The user defined names are used to    |          |          |
+|                              | specify DEM and/or PIC model inputs.                     |          |          |
++------------------------------+----------------------------------------------------------+----------+----------+
+| damped_newton.absolute_tol   | Define absolute tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
++------------------------------+----------------------------------------------------------+----------+----------+
+| damped_newton.relative_tol   | Define relative tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
++------------------------------+----------------------------------------------------------+----------+----------+
+| damped_newton.max_iterations | Define max number of iterations for Damped-Newton solver |  int     |  100     |
++------------------------------+----------------------------------------------------------+----------+----------+
 
 The following inputs define the single solids properties.
 
