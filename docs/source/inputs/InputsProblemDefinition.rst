@@ -792,8 +792,8 @@ conditions. Each entry must be preceded by `bc.[region0].`
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 | fluid.volfrac       | (Required) Volume fraction.                                           | Real        | None      |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| eb.normal           | (Optional) When specified, only cells with EB face normal parrallel   | Reals       | None      |
-|                     | and opposite in direction to the specified value are                  |             |           |
+| eb.normal           | (Optional) When specified, only cells with EB face normal that is     | Reals       | None      |
+|                     | parallel and opposite in direction to the specified value are         |             |           |
 |                     | imposed with the inflow velocity.                                     |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 | eb.normal_tol       | (Optional) Used in conjunction with `eb.normal`. It determines the    | Real        | None      |
