@@ -785,10 +785,14 @@ conditions. Each entry must be preceded by `bc.[region0].`
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 |                     | Description                                                           |   Type      | Default   |
 +=====================+=======================================================================+=============+===========+
-| fluid.velocity      | (Required) Inflow BC for fluid velocity on EBs contained in the       | Reals       | None      |
-|                     | in the (tridimensional) region.                                       |             |           |
+| fluid.velocity      | (Required if not `volflow`) Inflow BC for fluid velocity on           | Reals       | None      |
+|                     | EBs contained in the (tridimensional) region.                         |             |           |
 |                     | Note that if only one value is specified, that is assumed to          |             |           |
 |                     | be the magnitude in the direction of the EB face's normal.            |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| fluid.volflow       | (Required if not `velocity`) Inflow BC for fluid volumetric flow      | Real        | None      |
+|                     | rate in the (tridimensional) region. The flow is assumed to be        |             |           |
+|                     | normal to the EB surface in the region.                               |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 | fluid.volfrac       | (Required) Volume fraction.                                           | Real        | None      |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
