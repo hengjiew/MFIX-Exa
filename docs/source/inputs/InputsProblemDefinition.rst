@@ -675,8 +675,8 @@ The type of the boundary conditions in the BC region must be defined.
 |                     | * 'po'  for pressure outflow BC type                                  |             |           |
 |                     | * 'mi'  for mass inflow BC type                                       |             |           |
 |                     | * 'nsw' for no-slip wall BC type                                      |             |           |
-|                     | * 'eb'  for setting inhomogeneous Dirichlet BCs on the contained EBs  |             |           |
-|                     | * 'eb'  for setting inflow for fluid on the EB.                       |             |           |
+|                     | * 'eb'  for inhomogeneous Dirichlet BCs of temperature or fluid       |             |           |
+|                     |   velocity (mass inflow) on the contained EBs                         |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 For a fluid phase, the following inputs can be defined.
@@ -800,11 +800,11 @@ provided when appropriate.
 | fluid.volfrac       | (Required) Volume fraction.                                           | Real        | None      |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 | eb.normal           | (Optional) When specified, only cells with EB face normal that is     | Reals       | None      |
-|                     | parallel and opposite in direction to the specified value are         |             |           |
-|                     | imposed with the inflow velocity.                                     |             |           |
+|                     | parallel and opposite in direction to the specified values            |             |           |
+|                     | are imposed with the inflow velocity.                                 |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 | eb.normal_tol       | (Optional) Used in conjunction with `eb.normal`. It determines the    | Real        | None      |
-|                     | tolerance for choosing cells with a specific normal.                  |             |           |
+|                     | tolerance (in degrees) for choosing cells with a specific normal.     |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 Below is an example for specifying a normal inflow velocity magnitude for a region `eb-flow`.
