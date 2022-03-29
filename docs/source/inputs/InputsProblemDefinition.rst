@@ -675,6 +675,7 @@ The type of the boundary conditions in the BC region must be defined.
 |                     | * 'mi'  for mass inflow BC type                                       |             |           |
 |                     | * 'nsw' for no-slip wall BC type                                      |             |           |
 |                     | * 'eb'  for setting inhomogeneous Dirichlet BCs on the contained EBs  |             |           |
+|                     | * 'eb'  for setting inflow for fluid on the EB.                       |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 For a fluid phase, the following inputs can be defined.
@@ -755,7 +756,7 @@ tridimensional). We recall that, on the remaining part of the EBs, homogeneous
 Neumann boundary conditions are assumed by default.
 
 In the following table there is a list of the possible entries for EB boundary
-conditions. Each entry must be preceded by `bc.[region0].`
+conditions. Each entry must be preceded by `bc.[region0].` 
 
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 |                     | Description                                                           |   Type      | Default   |
@@ -773,3 +774,59 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
 
    bc.hot-walls = eb
    bc.hot-walls.eb.temperature = 800
+
+In addition to the temperature, it is possible to set an inflow condition for fluid
+on an embedeed boundary. We recall that, on the remaining part of the EBs,
+no slip velocity conditions are assumed by default.
+
+In the following table there is a list of the possible entries for inflow EB boundary
+conditions. Each entry must be preceded by `bc.[region0].` Like traditional mass
+inflows, the fluid temperature, pressure, and species composition must be
+provided when appropriate.
+
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+|                     | Description                                                           |   Type      | Default   |
++=====================+=======================================================================+=============+===========+
+| fluid.velocity      | (Required if not `volflow`) Inflow fluid velocity on EB faces         | Reals       | None      |
+|                     | contained in the (tridimensional) region.                             |             |           |
+|                     | Note that if only one value is specified, that is assumed to          |             |           |
+|                     | be the magnitude in the direction of the EB face's normal.            |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| fluid.volflow       | (Required if not `velocity`) Inflow BC for fluid volumetric flow      | Real        | None      |
+|                     | rate in the (tridimensional) region. The flow is assumed to be        |             |           |
+|                     | normal to the EB surface in the region.                               |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| fluid.volfrac       | (Required) Volume fraction.                                           | Real        | None      |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| eb.normal           | (Optional) When specified, only cells with EB face normal that is     | Reals       | None      |
+|                     | parallel and opposite in direction to the specified value are         |             |           |
+|                     | imposed with the inflow velocity.                                     |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| eb.normal_tol       | (Optional) Used in conjunction with `eb.normal`. It determines the    | Real        | None      |
+|                     | tolerance for choosing cells with a specific normal.                  |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+
+Below is an example for specifying a normal inflow velocity magnitude for a region `eb-flow`.
+
+.. code-block:: none
+
+   bc.regions = eb-flow
+
+   bc.eb-flow = eb
+
+   bc.eb-flow.fluid.volfrac  = 1.0
+   bc.eb-flow.fluid.velocity = 0.1
+
+Below is an example where only specific cells are imposed a velocity in the x-direction.
+
+.. code-block:: none
+
+   bc.regions = eb-flow
+
+   bc.eb-flow = eb
+
+   bc.eb-flow.eb.normal_tol = 3.0
+   bc.eb-flow.eb.normal =  0.9848  0.0000  0.1736  # 10 deg
+
+   bc.eb-flow.fluid.volfrac  = 1.0
+   bc.eb-flow.fluid.velocity = 0.1  0.0  0.0
