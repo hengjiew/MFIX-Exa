@@ -675,7 +675,7 @@ The type of the boundary conditions in the BC region must be defined.
 |                     | * 'mi'  for mass inflow BC type                                       |             |           |
 |                     | * 'nsw' for no-slip wall BC type                                      |             |           |
 |                     | * 'eb'  for setting inhomogeneous Dirichlet BCs on the contained EBs  |             |           |
-|                     | * 'eb'  for setting inflow fluid velocity on the contained EBs.       |             |           |
+|                     | * 'eb'  for setting inflow for fluid on the EB.                       |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 For a fluid phase, the following inputs can be defined.
@@ -756,7 +756,7 @@ tridimensional). We recall that, on the remaining part of the EBs, homogeneous
 Neumann boundary conditions are assumed by default.
 
 In the following table there is a list of the possible entries for EB boundary
-conditions. Each entry must be preceded by `bc.[region0].`
+conditions. Each entry must be preceded by `bc.[region0].` 
 
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 |                     | Description                                                           |   Type      | Default   |
@@ -775,18 +775,20 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
    bc.hot-walls = eb
    bc.hot-walls.eb.temperature = 800
 
-In addition to the temperature, it is possible to set an inflow condition for the fluid velocity
-on an embedeed boundary face. We recall that, on the remaining part of the EBs,
+In addition to the temperature, it is possible to set an inflow condition for fluid
+on an embedeed boundary. We recall that, on the remaining part of the EBs,
 no slip velocity conditions are assumed by default.
 
 In the following table there is a list of the possible entries for inflow EB boundary
-conditions. Each entry must be preceded by `bc.[region0].`
+conditions. Each entry must be preceded by `bc.[region0].` Like traditional mass
+inflows, the fluid temperature, pressure, and species composition must be
+provided when appropriate.
 
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 |                     | Description                                                           |   Type      | Default   |
 +=====================+=======================================================================+=============+===========+
-| fluid.velocity      | (Required if not `volflow`) Inflow BC for fluid velocity on           | Reals       | None      |
-|                     | EBs contained in the (tridimensional) region.                         |             |           |
+| fluid.velocity      | (Required if not `volflow`) Inflow fluid velocity on EB faces         | Reals       | None      |
+|                     | contained in the (tridimensional) region.                             |             |           |
 |                     | Note that if only one value is specified, that is assumed to          |             |           |
 |                     | be the magnitude in the direction of the EB face's normal.            |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
