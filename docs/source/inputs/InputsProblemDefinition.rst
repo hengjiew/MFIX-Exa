@@ -567,6 +567,7 @@ The name of the DEM phases to be defined in the IC region and the packing must b
 |                     | * oneper -- one particle per cell                              |             |           |
 |                     | * eightper -- eight particles per cell                         |             |           |
 |                     | * n-cube -- n^3 particles per cell where n is an integer       |             |           |
+|                     |                                                                |             |           |
 |                     | (NOTE: oneper is equivalent to 1-cube and eightper to 2-cube)  |             |           |
 +---------------------+----------------------------------------------------------------+-------------+-----------+
 
