@@ -815,7 +815,7 @@ Below is an example for specifying a normal inflow velocity magnitude for a regi
    bc.eb-flow.fluid.volfrac  = 1.0
    bc.eb-flow.fluid.velocity = 0.1
 
-Below is an example where only specific cells are imposed a velocity.
+Below is an example where only specific cells are imposed a velocity in the x-direction.
 
 .. code-block:: none
 
