@@ -217,14 +217,6 @@ The following inputs must be preceded by the given to the fluid solver e.g., "fl
 +------------------------------------------+----------------------------------------------------------+--------+----------+
 |                                          | Description                                              | Type   | Default  |
 +==========================================+==========================================================+========+==========+
-| density                                  | Specify which density model to use for fluid             | String |  None    |
-|                                          | [required]. Available options include:                   |        |          |
-|                                          |                                                          |        |          |
-|                                          | * 'constant' for constant density model                  |        |          |
-+------------------------------------------+----------------------------------------------------------+--------+----------+
-| density.constant                         | Value of constant fluid density [required if density=    |  Real  |  None    |
-|                                          | 'constant'].                                             |        |          |
-+------------------------------------------+----------------------------------------------------------+--------+----------+
 | molecular_weight                         | Value of constant fluid molecular weight                 |  Real  |    0     |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
 | viscosity                                | Specify which viscosity model to use for fluid           | String |  None    |
@@ -279,9 +271,6 @@ Below is an example for specifying fluid solver model options.
 .. code-block:: none
 
    fluid.solve = myfluid
-
-   myfluid.density = constant
-   myfluid.density.constant = 1.0
 
    myfluid.molecular_weight = mixture
 
@@ -536,21 +525,24 @@ region to apply the IC, and the name of the phase (e.g., `myfluid`).
 
 For a fluid phase, the following inputs can be defined.
 
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-|                     | Description                                                           |   Type      | Default   |
-+=====================+=======================================================================+=============+===========+
-| volfrac             | Volume fraction [required]                                            | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| density             | Fluid density                                                         | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| pressure            | Fluid pressure                                                        | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| temperature         | Fluid temperature                                                     | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| velocity            | Velocity components                                                   | Reals       | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| species.[species0]  | Species 'species0' mass fraction                                      | Reals       | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+|                        | Description                                                            |   Type      | Default   |
++========================+========================================================================+=============+===========+
+| volfrac                | Volume fraction [required]                                             | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| density                | Fluid density                                                          | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| pressure               | Fluid pressure                                                         | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| temperature            | Fluid temperature                                                      | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| thermodynamic_pressure | Fluid thermodynamic pressure [exactly two between density, temperature | Real        | 0.0       |
+|                        | and thermodynamic pressure required in case of Ideal Gas EOS]          |             |           |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| velocity               | Velocity components                                                    | Reals       | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| species.[species0]     | Species 'species0' mass fraction                                       | Reals       | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
 
 
 The name of the DEM phases to be defined in the IC region and the packing must be defined.
@@ -629,9 +621,10 @@ Below is an example for specifying an initial condition for a fluid (fluid) and 
    ic.regions  = bed
 
    ic.bed.fluid.volfrac   =  0.725
-
+   ic.bed.fluid.density   =  1.0
    ic.bed.fluid.velocity  =  0.015  0.00  0.00
    ic.bed.fluid.temperature =  383.0
+   ic.bed.fluid.thermodynamic_pressure =  101325.0
    ic.bed.fluid.species.H20 =  0.3
    ic.bed.fluid.species.He =  0.2
    ic.bed.fluid.species.O2 =  0.5
@@ -683,27 +676,30 @@ The type of the boundary conditions in the BC region must be defined.
 
 For a fluid phase, the following inputs can be defined.
 
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-|                     | Description                                                           |   Type      | Default   |
-+=====================+=======================================================================+=============+===========+
-| volfrac             | Volume fraction [required if bc_region_type='mi']                     | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| density             | Fluid density [required if bc_region_type='mi' or 'pi']              | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| pressure            | Fluid pressure [required if bc_region_type='po' or 'pi']              | Real        | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| temperature         | Fluid temperature [required if bc_region_type='mi' or 'pi']           | Real        | 0.0       |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| velocity            | Velocity components [required if bc_region_type='mi']                 | Reals       | None      |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| delp_dir            | Direction for specified pressure drop. Note that this direction       | Int         | 0         |
-|                     | should also be periodic.                                              |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| delp                | Pressure drop (Pa)                                                    | Real        | 0.0       |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| species.[species0]  | Species 'species0' mass fraction [required if solve_species=1         | Real        | None      |
-|                     | and bc_region_type='mi' or 'pi'].                                     |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+|                        | Description                                                            |   Type      | Default   |
++========================+========================================================================+=============+===========+
+| volfrac                | Volume fraction [required if bc_region_type='mi']                      | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| density                | Fluid density [required if bc_region_type='mi' or 'pi']                | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| pressure               | Fluid pressure [required if bc_region_type='po' or 'pi']               | Real        | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| temperature            | Fluid temperature [required if bc_region_type='mi' or 'pi']            | Real        | 0.0       |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| thermodynamic_pressure | Fluid thermodynamic pressure [exactly two between density, temperature | Real        | 0.0       |
+| thermodynamic_pressure | and thermodynamic pressure required in case of Ideal Gas EOS]          | Real        | 0.0       |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| velocity               | Velocity components [required if bc_region_type='mi']                  | Reals       | None      |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| delp_dir               | Direction for specified pressure drop. Note that this direction        | Int         | 0         |
+|                        | should also be periodic.                                               |             |           |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| delp                   | Pressure drop (Pa)                                                     | Real        | 0.0       |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
+| species.[species0]     | Species 'species0' mass fraction [required if solve_species=1          | Real        | None      |
+|                        | and bc_region_type='mi' or 'pi'].                                      |             |           |
++------------------------+------------------------------------------------------------------------+-------------+-----------+
 
 Below is an example for specifying boundary conditions for a fluid `myfluid`.
 
@@ -713,8 +709,10 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
 
    bc.inflow = mi
    bc.inflow.myfluid.volfrac     =  1.0
+   bc.inflow.myfluid.density     =  1.0
    bc.inflow.myfluid.velocity    =  0.015  0.0  0.0
    bc.inflow.myfluid.temperature =  300
+   bc.inflow.myfluid.thermodynamic_pressure = 101325.0
    bc.inflow.myfluid.species.O2  =  0.0
    bc.inflow.myfluid.species.CO  =  0.5
    bc.inflow.myfluid.species.H2O =  0.0
