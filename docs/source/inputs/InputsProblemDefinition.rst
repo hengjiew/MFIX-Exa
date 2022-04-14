@@ -232,6 +232,7 @@ The following inputs must be preceded by the given to the fluid solver e.g., "fl
 |                                          | include:                                                 |        |          |
 |                                          |                                                          |        |          |
 |                                          | * 'constant' for constant specific heat model            |        |          |
+|                                          | * 'mixture' required when fluid is a mixture of species  |        |          |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
 | specific_heat.constant                   | Value of constant fluid specific heat [required if       |  Real  |  None    |
 |                                          | specific_heat_model='constant'].                         |        |          |
@@ -272,20 +273,17 @@ Below is an example for specifying fluid solver model options.
 
    fluid.solve = myfluid
 
-   myfluid.molecular_weight = mixture
-
    myfluid.viscosity = constant
    myfluid.viscosity.constant = 1.8e-5
 
-   myfluid.specific_heat = constant
-   myfluid.specific_heat.constant = 918
+   myfluid.specific_heat = mixture
 
    myfluid.thermal_conductivity = constant
    myfluid.thermal_conductivity.constant = 0.024
 
    myfluid.reference_temperature = 298.15
 
-   myfluid.species = O2 He
+   myfluid.species =  O2  He
 
    # this is optional. it has to be specified in case it is different than 
    # the value passed in the species section
@@ -688,7 +686,7 @@ For a fluid phase, the following inputs can be defined.
 | temperature            | Fluid temperature [required if bc_region_type='mi' or 'pi']            | Real        | 0.0       |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
 | thermodynamic_pressure | Fluid thermodynamic pressure [exactly two between density, temperature | Real        | 0.0       |
-| thermodynamic_pressure | and thermodynamic pressure required in case of Ideal Gas EOS]          | Real        | 0.0       |
+|                        | and thermodynamic pressure required in case of Ideal Gas EOS]          |             |           |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
 | velocity               | Velocity components [required if bc_region_type='mi']                  | Reals       | None      |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
@@ -720,6 +718,9 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
 
    bc.outflow = po
    bc.outflow.myfluid.pressure =  0.0
+   # In case of Ideal Gas EOS with Open System constraint
+   # the thermodynamic pressure at outflow is required
+   bc.outflow.thermodynamic_pressure = 101325.0
 
 
 Transient Boundary Conditions
