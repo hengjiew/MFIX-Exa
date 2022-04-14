@@ -12,8 +12,6 @@ format (for debugging).
 +=====================+=======================================================================+=============+===========+
 | plot_int            | Frequency of plotfile output;                                         |    Int      | -1        |
 |                     | if -1 then no plotfiles will be written at this frequency             |             |           |
-| plot_per_exact      | Time period of plotfile output (exact); will modify dt                |    Real     | -1        |
-|                     | if -1 then no plotfiles will be written at this frequency             |             |           |
 | plot_per_approx     | Time period of plotfile output (approximate); does not modify dt      |    Real     | -1        |
 |                     | if -1 then no plotfiles will be written at this frequency             |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
