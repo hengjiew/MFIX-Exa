@@ -31,6 +31,13 @@ format (for debugging).
 | par_ascii_int       | Frequency of ascii particle output;                                   |    Int      | -1        |
 |                     | if -1 then no plotfiles will be written                               |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| ascent_int          | Frequency of ascent pipeline;                                         |    Int      | -1        |
+|                     | if -1 then ascent will not be called.                                 |             |           |
+| ascent_per_approx   | Time period of the ascent pipeline (approximate);                     |    Real     | -1        |
+|                     | if -1 then ascent will not be called.                                 |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+
+
 
 The following inputs must be preceded by "amr" and control what variables will be written in plotfiles.
 
@@ -80,3 +87,22 @@ The following inputs must be preceded by "amr" and control what variables will b
 | plt_phase           | Save particle type to plot file                                       |    Int      | 0         |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
+
+
+`Ascent <ascent.readthedocs.io>`_ has been integrated into MFIX-Exa for *in situ* visualization. 
+For codes that have been built with Ascent support, the following inputs must be preceded by "ascent" 
+and specifies the ascent actions for fluid and/or particles. The frequency which these are called 
+is controlled by `ascent_int` or `ascent_per_approx`, see above.  
+
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+|                     | Description                                                           |   Type      | Default   |
++=====================+=======================================================================+=============+===========+
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| fluid_actions       | yaml file of the ascent actions for the mesh data                     |  String     | plt       |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| particle_actions    | yaml file of the ascent actions for the Lagrangian data               |   Bool      | False     |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+
+
+
+
