@@ -181,9 +181,9 @@ Below is an example for specifying species solver model options.
 
    species.solve = O2 H2O He
 
-   species.O2.molecular_weight = 32.0
-   species.H2O.molecular_weight = 18.01528
-   species.He.molecular_weight = 4.0
+   species.O2.molecular_weight = 32.0e-3
+   species.H2O.molecular_weight = 18.01528e-3
+   species.He.molecular_weight = 4.0e-3
 
    species.diffusivity = constant
    species.diffusivity.constant = 1.9e-5
@@ -710,7 +710,6 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
    bc.inflow.myfluid.density     =  1.0
    bc.inflow.myfluid.velocity    =  0.015  0.0  0.0
    bc.inflow.myfluid.temperature =  300
-   bc.inflow.myfluid.thermodynamic_pressure = 101325.0
    bc.inflow.myfluid.species.O2  =  0.0
    bc.inflow.myfluid.species.CO  =  0.5
    bc.inflow.myfluid.species.H2O =  0.0
@@ -720,7 +719,7 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
    bc.outflow.myfluid.pressure =  0.0
    # In case of Ideal Gas EOS with Open System constraint
    # the thermodynamic pressure at outflow is required
-   bc.outflow.thermodynamic_pressure = 101325.0
+   bc.outflow.thermodynamic_pressure = 356318.21
 
 
 Transient Boundary Conditions
