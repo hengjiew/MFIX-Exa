@@ -246,6 +246,9 @@ The following inputs must be preceded by the given to the fluid solver e.g., "fl
 | thermal_conductivity.constant            | Value of constant fluid thermal conductivity [required   |  Real  |  None    |
 |                                          | if thermal_conductivity_model='constant'].               |        |          |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
+| thermodynamic_pressure                   | Value of the thermodynamic pressure [required if the     |  Real  |  0       |
+|                                          | constraint type is IdealGasClosedSystem]                 |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
 | reference_temperature                    | Value of the reference temperature used for specific     |  Real  |  0       |
 |                                          | enthalpy                                                 |  Real  |  0       |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
@@ -260,11 +263,11 @@ The following inputs must be preceded by the given to the fluid solver e.g., "fl
 |                                          | different than the value specified in the species        |        |          |
 |                                          | model settings                                           |        |          |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
-| damped_newton.absolute_tol               | Define absolute tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
+| newton_solver.absolute_tol               | Define absolute tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
-| damped_newton.relative_tol               | Define relative tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
+| newton_solver.relative_tol               | Define relative tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
-| damped_newton.max_iterations             | Define max number of iterations for Damped-Newton solver |  int   |  500     |
+| newton_solver.max_iterations             | Define max number of iterations for Damped-Newton solver |  int   |  500     |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
 
 Below is an example for specifying fluid solver model options.
@@ -309,11 +312,11 @@ models.
 |                              | the SOLIDS solver. The user defined names are used to    |          |          |
 |                              | specify DEM and/or PIC model inputs.                     |          |          |
 +------------------------------+----------------------------------------------------------+----------+----------+
-| damped_newton.absolute_tol   | Define absolute tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
+| newton_solver.absolute_tol   | Define absolute tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
 +------------------------------+----------------------------------------------------------+----------+----------+
-| damped_newton.relative_tol   | Define relative tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
+| newton_solver.relative_tol   | Define relative tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
 +------------------------------+----------------------------------------------------------+----------+----------+
-| damped_newton.max_iterations | Define max number of iterations for Damped-Newton solver |  int     |  100     |
+| newton_solver.max_iterations | Define max number of iterations for Damped-Newton solver |  int     |  100     |
 +------------------------------+----------------------------------------------------------+----------+----------+
 
 The following inputs define the single solids properties.
@@ -530,12 +533,7 @@ For a fluid phase, the following inputs can be defined.
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
 | density                | Fluid density                                                          | Real        | None      |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
-| pressure               | Fluid pressure                                                         | Real        | None      |
-+------------------------+------------------------------------------------------------------------+-------------+-----------+
 | temperature            | Fluid temperature                                                      | Real        | None      |
-+------------------------+------------------------------------------------------------------------+-------------+-----------+
-| thermodynamic_pressure | Fluid thermodynamic pressure [exactly two between density, temperature | Real        | 0.0       |
-|                        | and thermodynamic pressure required in case of Ideal Gas EOS]          |             |           |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
 | velocity               | Velocity components                                                    | Reals       | None      |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
@@ -622,7 +620,6 @@ Below is an example for specifying an initial condition for a fluid (fluid) and 
    ic.bed.fluid.density   =  1.0
    ic.bed.fluid.velocity  =  0.015  0.00  0.00
    ic.bed.fluid.temperature =  383.0
-   ic.bed.fluid.thermodynamic_pressure =  101325.0
    ic.bed.fluid.species.H20 =  0.3
    ic.bed.fluid.species.He =  0.2
    ic.bed.fluid.species.O2 =  0.5
@@ -684,9 +681,6 @@ For a fluid phase, the following inputs can be defined.
 | pressure               | Fluid pressure [required if bc_region_type='po' or 'pi']               | Real        | None      |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
 | temperature            | Fluid temperature [required if bc_region_type='mi' or 'pi']            | Real        | 0.0       |
-+------------------------+------------------------------------------------------------------------+-------------+-----------+
-| thermodynamic_pressure | Fluid thermodynamic pressure [exactly two between density, temperature | Real        | 0.0       |
-|                        | and thermodynamic pressure required in case of Ideal Gas EOS]          |             |           |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
 | velocity               | Velocity components [required if bc_region_type='mi']                  | Reals       | None      |
 +------------------------+------------------------------------------------------------------------+-------------+-----------+
