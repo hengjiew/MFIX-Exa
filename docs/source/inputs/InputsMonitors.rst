@@ -16,13 +16,19 @@ n is the number of monitors implicitly defined by the size of avg_region_x_w.
 |                  | ep_g or vel_g), the number of this type of averaging,  and the .csv   |             |           |
 |                  | file extension                                                        |             |           |
 +------------------+-----------------------------------------------------------------------+-------------+-----------+
-| avg_vel_p        | Average and save particle velocity (if 1)                             |  n*Int      | 0         |
+| avg_ep_g         | Average and save fluid-phase volume fraction (if 1)                   |  n*Int      | 0         |
 +------------------+-----------------------------------------------------------------------+-------------+-----------+
 | avg_p_g          | Average and save fluid-phase pressure (if 1)                          |  n*Int      | 0         |
 +------------------+-----------------------------------------------------------------------+-------------+-----------+
-| avg_ep_g         | Average and save fluid-phase volume fraction (if 1)                   |  n*Int      | 0         |
-+------------------+-----------------------------------------------------------------------+-------------+-----------+
 | avg_vel_g        | Average and save fluid-phase velocity (if 1)                          |  n*Int      | 0         |
++------------------+-----------------------------------------------------------------------+-------------+-----------+
+| avg_T_g          | Average and save fluid-phase temperature (if 1)                       |  n*Int      | 0         |
++------------------+-----------------------------------------------------------------------+-------------+-----------+
+| avg_ro_p         | Average and save particle density (if 1)                              |  n*Int      | 0         |
++------------------+-----------------------------------------------------------------------+-------------+-----------+
+| avg_vel_p        | Average and save particle velocity (if 1)                             |  n*Int      | 0         |
++------------------+-----------------------------------------------------------------------+-------------+-----------+
+| avg_T_p          | Average and save particle temperature (if 1)                          |  n*Int      | 0         |
 +------------------+-----------------------------------------------------------------------+-------------+-----------+
 | avg_region_x_w   | Lower bound of averaging region in x-direction                        |  n*Real     | None      |
 +------------------+-----------------------------------------------------------------------+-------------+-----------+
