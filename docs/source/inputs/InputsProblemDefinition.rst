@@ -106,8 +106,6 @@ The following inputs must be preceded by "mfix."
 | levelset__refinement   | Refinement factor of levelset resolution relative to level 0      |   Int    | 1                   |
 |                        | resolution                                                        |          |                     |
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
-| po_no_par_out          | Let particles exit (default) or bounce-back at pressure outflows  |   Int    | 0                   |
-+------------------------+-------------------------------------------------------------------+----------+---------------------+
 | gravity                | Gravity vector (e.g., mfix.gravity = -9.81  0.0  0.0) [required]  |   Reals  | 0 0 0               |
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
 | advect_density         | Switch for turning ON (1) or OFF (0) fluid density evolution      |   Int    | 0                   |
@@ -667,6 +665,8 @@ The type of the boundary conditions in the BC region must be defined.
 |                     | * 'nsw' for no-slip wall BC type                                      |             |           |
 |                     | * 'eb'  for inhomogeneous Dirichlet BCs of temperature or fluid       |             |           |
 |                     |   velocity (mass inflow) on the contained EBs                         |             |           |
++---------------------+-----------------------------------------------------------------------+-------------+-----------+
+| bc.po_no_par_out    | Let particles exit (default) or bounce-back at pressure outflows      |   Int       | 0         |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 For a fluid phase, the following inputs can be defined.
