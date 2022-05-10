@@ -38,7 +38,6 @@ format (for debugging).
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 
-
 The following inputs must be preceded by "amr" and control what variables will be written in plotfiles.
 
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
@@ -92,7 +91,9 @@ The following inputs must be preceded by "amr" and control what variables will b
 `Ascent <ascent.readthedocs.io>`_ has been integrated into MFIX-Exa for *in situ* visualization. 
 For codes that have been built with Ascent support, the following inputs must be preceded by "ascent" 
 and specifies the ascent actions for fluid and/or particles. The frequency which these are called 
-is controlled by `ascent_int` or `ascent_per_approx`, see above.  
+is controlled by `ascent_int` or `ascent_per_approx`, see above. Note that if an ascent pipeline 
+is being included in a GPU build/run, then you must enable managed memory, 
+i.e., set `amrex.the_arena_is_managed = true`. 
 
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 |                     | Description                                                           |   Type      | Default   |
