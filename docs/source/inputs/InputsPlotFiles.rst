@@ -99,9 +99,8 @@ i.e., set `amrex.the_arena_is_managed = true`.
 |                     | Description                                                           |   Type      | Default   |
 +=====================+=======================================================================+=============+===========+
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| fluid_actions       | yaml file of the ascent actions for the mesh data                     |  String     | plt       |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| particle_actions    | yaml file of the ascent actions for the Lagrangian data               |   Bool      | False     |
+| actions             | yaml file of the ascent actions (ex. ascent_actions.yaml). If no file |  String     |           |
+|                     | name is provided, then calls to Ascent are skipped.                   |             |           |
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 
