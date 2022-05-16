@@ -7,35 +7,39 @@ The following inputs must be preceded by "amr" and control frequency and naming 
 as whether the EB geometry or level set should be written out, and if the particles should be written out in Ascii
 format (for debugging).
 
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-|                     | Description                                                           |   Type      | Default   |
-+=====================+=======================================================================+=============+===========+
-| plot_int            | Frequency of plotfile output;                                         |    Int      | -1        |
-|                     | if -1 then no plotfiles will be written at this frequency             |             |           |
-| plot_per_approx     | Time period of plotfile output (approximate); does not modify dt      |    Real     | -1        |
-|                     | if -1 then no plotfiles will be written at this frequency             |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| plotfile_on_restart | Should we write a plotfile when we restart (only used if plot_int>0)  |   Bool      | False     |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| plot_file           | Prefix to use for plotfile output                                     |  String     | plt       |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| write_ls            | Should we write a plotfile holding the level set and volfrac?         |   Bool      | False     |
-|                     | If true, it will only be written once,after initialization or restart |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| write_eb_surface    | Should we write out the EB geometry in vtp format                     |   Bool      | False     |
-|                     | If true, it will only be written once,after initialization or restart |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| par_ascii_file      | Prefix to use for ascii particle output                               |  String     | par       |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| par_ascii_int       | Frequency of ascii particle output;                                   |    Int      | -1        |
-|                     | if -1 then no plotfiles will be written                               |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
-| ascent_int          | Frequency of ascent pipeline;                                         |    Int      | -1        |
-|                     | if -1 then ascent will not be called.                                 |             |           |
-| ascent_per_approx   | Time period of the ascent pipeline (approximate);                     |    Real     | -1        |
-|                     | if -1 then ascent will not be called.                                 |             |           |
-+---------------------+-----------------------------------------------------------------------+-------------+-----------+
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+|                      | Description                                                           |   Type      | Default   |
++======================+=======================================================================+=============+===========+
+| plot_int             | Frequency of plotfile output;                                         |    Int      | -1        |
+|                      | if -1 then no plotfiles will be written at this frequency             |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| plot_per_approx      | Time period of plotfile output (approximate); does not modify dt      |    Real     | -1        |
+|                      | if -1 then no plotfiles will be written at this frequency             |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| plotfile_on_restart  | Should we write a plotfile when we restart (only used if plot_int>0)  |   Bool      | False     |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| plot_file            | Prefix to use for plotfile output                                     |  String     | plt       |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| write_ls             | Should we write a plotfile holding the level set and volfrac?         |   Bool      | False     |
+|                      | If true, it will only be written once,after initialization or restart |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| write_eb_surface     | Should we write out the EB geometry in vtp format                     |   Bool      | False     |
+|                      | If true, it will only be written once,after initialization or restart |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| par_ascii_file       | Prefix to use for ascii particle output                               |  String     | par       |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| par_ascii_int        | Frequency of ascii particle output;                                   |    Int      | -1        |
+|                      | if -1 then no particle ascii files will be written                    |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| par_ascii_per_approx | Time period of the ascii particle output (approximate);               |    Real     | -1        |
+|                      | if -1 then particle ascii files will not be written at this frequency |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| ascent_int           | Frequency of ascent pipeline;                                         |    Int      | -1        |
+|                      | if -1 then ascent will not be called.                                 |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
+| ascent_per_approx    | Time period of the ascent pipeline (approximate);                     |    Real     | -1        |
+|                      | if -1 then ascent will not be called.                                 |             |           |
++----------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 
 The following inputs must be preceded by "amr" and control what variables will be written in plotfiles.
