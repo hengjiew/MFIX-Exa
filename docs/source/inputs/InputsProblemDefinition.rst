@@ -301,21 +301,25 @@ Solids model settings
 ---------------------
 
 Enabling the SOLIDS solver and specifying options common to both DEM and PIC
-models.
+models. The following inputs must be preceded by the "solids." root
 
-+------------------------------+----------------------------------------------------------+----------+----------+
-|                              | Description                                              |   Type   | Default  |
-+==============================+==========================================================+==========+==========+
-| solids.types                 | Specified name(s) of the SOLIDS types or None to disable | String   |  None    |
-|                              | the SOLIDS solver. The user defined names are used to    |          |          |
-|                              | specify DEM and/or PIC model inputs.                     |          |          |
-+------------------------------+----------------------------------------------------------+----------+----------+
-| newton_solver.absolute_tol   | Define absolute tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
-+------------------------------+----------------------------------------------------------+----------+----------+
-| newton_solver.relative_tol   | Define relative tolerance for Damped-Newton solver       |  Real    |  1.e-6   |
-+------------------------------+----------------------------------------------------------+----------+----------+
-| newton_solver.max_iterations | Define max number of iterations for Damped-Newton solver |  int     |  100     |
-+------------------------------+----------------------------------------------------------+----------+----------+
++------------------------------+-------------------------------------------------------------+----------+----------+
+|                              | Description                                                 |   Type   | Default  |
++==============================+=============================================================+==========+==========+
+| types                        | Specified name(s) of the SOLIDS types or None to disable    | String   |  None    |
+|                              | the SOLIDS solver. The user defined names are used to       |          |          |
+|                              | specify DEM and/or PIC model inputs.                        |          |          |
++------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.absolute_tol   | Define absolute tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
++------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.relative_tol   | Define relative tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
++------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.max_iterations | Define max number of iterations for Damped-Newton solver    |  int     |  100     |
++------------------------------+-------------------------------------------------------------+----------+----------+
+| plot_regions                 | This input helps setting which regions to use for filtering | String   |  None    |
+|                              | solids data by plotting only those particles that reside    |          |          |
+|                              | in the specified regions                                    |          |          |
++------------------------------+-------------------------------------------------------------+----------+----------+
 
 The following inputs define the single solids properties.
 
