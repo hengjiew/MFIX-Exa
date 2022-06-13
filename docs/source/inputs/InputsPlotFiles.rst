@@ -108,5 +108,56 @@ i.e., set `amrex.the_arena_is_managed = true`.
 +---------------------+-----------------------------------------------------------------------+-------------+-----------+
 
 
+The following inputs must be preceded by "amr.solids" and allow to write additional plotfiles which contain only solids variables in specific regions at fixed timesteps or approximated simulation times. All these parameters are user-defined.
 
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+|                           | Description                                                     |   Type      | Default   |
++===========================+=================================================================+=============+===========+
+| regions                   | Specify regions that will be used for plotfiles                 |  String     |           |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region]                  | Specify which solids phases will be plotted                     |  String     |           |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plot_int         | Specify timestep frequency for plotting the file                |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plot_per_approx  | Specify time interval frequency for ploting the file            |   Real      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_regtest      | Save all variables to plot file (overrides all other IO flags)  |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_radius       | Save particle radius to plot file                               |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_volume       | Save particle volume to plot file                               |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_mass         | Save particle mass to plot file                                 |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_ro_p         | Save particle density to plot file                              |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_omoi         | Save inverse of particle momentum of inertia to plot file       |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_vel_p        | Save particle velocity to plot file                             |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_omega_p      | Save particle angular velocity to plot file                     |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_statwt       | Save particle statistical weight to plot file                   |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_drag_p       | Save particle drag force to plot file                           |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_cp_s         | Save particle specific heat coefficient to plot file            |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_T_p          | Save particle temperature to plot file                          |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_convection   | Save particle convection coefficient to plot file               |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_X_s          | Save particle species mass fractions to plot file               |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_vel_s_txfr   | Save particle interphase velocity transfer to plot file         |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_h_s_txfr     | Save particle interphase enthalpy transfer to plot file         |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_mass_sn_txfr | Save particle interphase mass transfer to plot file             |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_phase        | Save particle phase to plot file                                |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
+| [region].plt_state        | Save particle state to plot file                                |    Int      | 0         |
++---------------------------+-----------------------------------------------------------------+-------------+-----------+
 
+For each region with name [region] specified in the inputs, it will be saved a plotfile with name "partsXXXXX_[region]", where XXXXX stands for the timestep number.
