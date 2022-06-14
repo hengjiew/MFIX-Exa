@@ -303,59 +303,53 @@ Solids model settings
 Enabling the SOLIDS solver and specifying options common to both DEM and PIC
 models. The following inputs must be preceded by the "solids." root
 
-+------------------------------+-------------------------------------------------------------+----------+----------+
-|                              | Description                                                 |   Type   | Default  |
-+==============================+=============================================================+==========+==========+
-| types                        | Specified name(s) of the SOLIDS types or None to disable    | String   |  None    |
-|                              | the SOLIDS solver. The user defined names are used to       |          |          |
-|                              | specify DEM and/or PIC model inputs.                        |          |          |
-+------------------------------+-------------------------------------------------------------+----------+----------+
-| newton_solver.absolute_tol   | Define absolute tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
-+------------------------------+-------------------------------------------------------------+----------+----------+
-| newton_solver.relative_tol   | Define relative tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
-+------------------------------+-------------------------------------------------------------+----------+----------+
-| newton_solver.max_iterations | Define max number of iterations for Damped-Newton solver    |  int     |  100     |
-+------------------------------+-------------------------------------------------------------+----------+----------+
-| plot_regions                 | This input helps setting which regions to use for filtering | String   |  None    |
-|                              | solids data by plotting only those particles that reside    |          |          |
-|                              | in the specified regions                                    |          |          |
-+------------------------------+-------------------------------------------------------------+----------+----------+
-
-The following inputs define the single solids properties.
-
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-|                                                   | Description                             |   Type   | Default   |
-+===================================================+=========================================+==========+===========+
-| [solid0].molecular_weight                         | Value of constant solid molecular       |  Real    |  0        |
-|                                                   | weight                                  |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].specific_heat                            | Specify which specific heat model to    |  String  |  None     |
-|                                                   | use for solid. Available options        |          |           |
-|                                                   | include:                                |          |           |
-|                                                   |                                         |          |           |
-|                                                   | * 'constant' for constant specific heat |          |           |
-|                                                   |   model                                 |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].specific_heat.constant                   | Value of species molecular weight.      |  Real    |  0        |
-|                                                   | [required if fluid.specific_heat =      |          |           |
-|                                                   | 'constant'].                            |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].reference_temperature                    | Value of the reference temperature used |  Real    |  0        |
-|                                                   | for specific enthalpy                   |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].species                                  | Specify which species can constitute    |  String  |  None     |
-|                                                   | the fluid phase [defined species must   |          |           |
-|                                                   | be a subset of the species.solve        |          |           |
-|                                                   | arguments].                             |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].species.[species0].specific_heat         | Specify species0 specific heat if it is |  Real    |  0        |
-|                                                   | different than the value specified in   |          |           |
-|                                                   | the species model settings              |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
-| [solid0].species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation  |  Real    |  0        |
-|                                                   | if it is different than the value       |          |           |
-|                                                   | specified in the species model settings |          |           |
-+---------------------------------------------------+-----------------------------------------+----------+-----------+
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+|                                          | Description                                                 |   Type   | Default  |
++==========================================+=============================================================+==========+==========+
+| types                                    | Specified name(s) of the SOLIDS types or None to disable    | String   |  None    |
+|                                          | the SOLIDS solver. The user defined names are used to       |          |          |
+|                                          | specify DEM and/or PIC model inputs.                        |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.absolute_tol               | Define absolute tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.relative_tol               | Define relative tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.max_iterations             | Define max number of iterations for Damped-Newton solver    |  int     |  100     |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| plot_regions                             | This input helps setting which regions to use for filtering | String   |  None    |
+|                                          | solids data by plotting only those particles that reside    |          |          |
+|                                          | in the specified regions                                    |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| molecular_weight                         | Value of constant solid molecular                           |  Real    |  0       |
+|                                          | weight                                                      |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| specific_heat                            | Specify which specific heat model to                        |  String  |  None    |
+|                                          | use for solid. Available options                            |          |          |
+|                                          | include:                                                    |          |          |
+|                                          |                                                             |          |          |
+|                                          | * 'constant' for constant specific heat                     |          |          |
+|                                          |   model                                                     |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| specific_heat.constant                   | Value of species molecular weight.                          |  Real    |  0       |
+|                                          | [required if fluid.specific_heat =                          |          |          |
+|                                          | 'constant'].                                                |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| reference_temperature                    | Value of the reference temperature used                     |  Real    |  0       |
+|                                          | for specific enthalpy                                       |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| species                                  | Specify which species can constitute                        |  String  |  None    |
+|                                          | the fluid phase [defined species must                       |          |          |
+|                                          | be a subset of the species.solve                            |          |          |
+|                                          | arguments].                                                 |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| species.[species0].specific_heat         | Specify species0 specific heat if it is                     |  Real    |  0       |
+|                                          | different than the value specified in                       |          |          |
+|                                          | the species model settings                                  |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation                      |  Real    |  0       |
+|                                          | if it is different than the value                           |          |          |
+|                                          | specified in the species model settings                     |          |          |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
 
 Below is an example for specifying the solids solver model options.
 
@@ -363,15 +357,9 @@ Below is an example for specifying the solids solver model options.
 
    solids.types = mysolid
 
-   mysolid.molecular_weight = constant
-   mysolid.molecular_weight.constant = 18.01528
+   solids.reference_temperature = 298.15
 
-   mysolid.reference_temperature = 298.15
-
-   mysolid.specific_heat = constant
-   mysolid.specific_heat.constant = 4186
-
-   mysolid.species = H2O
+   solids.species = H2O
 
    # this is optional. it has to be specified in case it is different than 
    # the value passed in the species section
