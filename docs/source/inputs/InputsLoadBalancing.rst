@@ -84,3 +84,6 @@ The following inputs must be preceded by "mfix" and determine how we load balanc
 |                      | disjoined grids                                                       |             |              |
 +----------------------+-----------------------------------------------------------------------+-------------+--------------+
 
+To allow a user to verify the breakdown of fluid grids created before running a full simulation, an input option, 
+:cpp:`mfix.only_print_grid_report` is supported. By default, it is :cpp:`False`. When set to :cpp:`True`, the run uses 
+minimal memory to print the grid coverage report and exits immediately after that.
