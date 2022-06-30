@@ -177,44 +177,72 @@ Below is an example for specifying species solver model options.
 
 .. code-block:: none
 
-   species.solve = O2 H2O He
-
-   species.O2.molecular_weight = 32.0e-3
-   species.H2O.molecular_weight = 18.01528e-3
-   species.He.molecular_weight = 4.0e-3
+   species.solve = O2  CO  CO2  Fe2O3  FeO
 
    species.diffusivity = constant
    species.diffusivity.constant = 1.9e-5
 
-   species.specific_heat = constant
+   species.specific_heat = NASA7-poly
 
-   species.O2.specific_heat.constant = 918.0
-   species.H2O.specific_heat.constant = 4186.0
-   species.He.specific_heat.constant = 1667.0
+   # Oxygen
+   species.O2.molecular_weight = 31.99880e-3
+   species.O2.specific_heat.NASA7.a0 =  3.78245636E+00    3.66096065E+00
+   species.O2.specific_heat.NASA7.a1 = -2.99673416E-03    6.56365811E-04
+   species.O2.specific_heat.NASA7.a2 =  9.84730201E-06   -1.41149627E-07
+   species.O2.specific_heat.NASA7.a3 = -9.68129509E-09    2.05797935E-11
+   species.O2.specific_heat.NASA7.a4 =  3.24372837E-12   -1.29913436E-15
+   species.O2.specific_heat.NASA7.a5 = -1.06394356E+03   -1.21597718E+03
 
-   species.O2.enthalpy_of_formation = 0
-   species.H2O.enthalpy_of_formation = -15861265.26  # J/kg
-   species.He.enthalpy_of_formation = 0
+   # Carbon monoxide
+   species.CO.molecular_weight = 28.01040e-3
+   species.CO.specific_heat.NASA7.a0 =  3.57953350E+00    3.04848590E+00
+   species.CO.specific_heat.NASA7.a1 = -6.10353690E-04    1.35172810E-03
+   species.CO.specific_heat.NASA7.a2 =  1.01681430E-06   -4.85794050E-07
+   species.CO.specific_heat.NASA7.a3 =  9.07005860E-10    7.88536440E-11
+   species.CO.specific_heat.NASA7.a4 = -9.04424490E-13   -4.69807460E-15
+   species.CO.specific_heat.NASA7.a5 = -1.43440860E+04   -1.42661170E+04
+
+   # Carbon dioxide
+   species.CO2.molecular_weight = 44.00980e-3
+   species.CO2.specific_heat.NASA7.a0 =  2.35681300E+00    4.63651110E+00
+   species.CO2.specific_heat.NASA7.a1 =  8.98412990E-03    2.74145690E-03
+   species.CO2.specific_heat.NASA7.a2 = -7.12206320E-06   -9.95897590E-07
+   species.CO2.specific_heat.NASA7.a3 =  2.45730080E-09    1.60386660E-10
+   species.CO2.specific_heat.NASA7.a4 = -1.42885480E-13   -9.16198570E-15
+   species.CO2.specific_heat.NASA7.a5 = -4.83719710E+04   -4.90249040E+04
+
+   # Hematite
+   species.Fe2O3.molecular_weight = 159.68820e-3
+   species.Fe2O3.specific_heat.NASA7.a0 =  1.52218166E-01    2.09445369E+01
+   species.Fe2O3.specific_heat.NASA7.a1 =  6.70757040E-02    0.00000000E+00
+   species.Fe2O3.specific_heat.NASA7.a2 = -1.12860954E-04    0.00000000E+00
+   species.Fe2O3.specific_heat.NASA7.a3 =  9.93356662E-08    0.00000000E+00
+   species.Fe2O3.specific_heat.NASA7.a4 = -3.27580975E-11    0.00000000E+00
+   species.Fe2O3.specific_heat.NASA7.a5 = -1.01344092E+05   -1.07936580E+05
+
+   # Wustite
+   species.FeO.molecular_weight = 71.84440e-3
+   species.FeO.specific_heat.NASA7.a0 =  3.68765953E+00    1.81588527E+00
+   species.FeO.specific_heat.NASA7.a1 =  1.09133433E-02    1.70742829E-02
+   species.FeO.specific_heat.NASA7.a2 = -1.61179493E-05   -2.39919190E-05
+   species.FeO.specific_heat.NASA7.a3 =  1.06449256E-08    1.53690046E-08
+   species.FeO.specific_heat.NASA7.a4 = -2.39514915E-12   -3.53442390E-12
+   species.FeO.specific_heat.NASA7.a5 = -3.34867527E+04   -3.30239565E+04
 
 
 Fluid model settings
 --------------------
 
 Enabling the fluid solver and specifying fluid model options.
-
-+----------------------+-------------------------------------------------------------------------+----------+-----------+
-|                      | Description                                                             |   Type   | Default   |
-+======================+=========================================================================+==========+===========+
-| fluid.solve          | Specified name of the fluid or None to disable the fluid solver. The    | String   |  None     |
-|                      | name assigned to the fluid solver is used to specify fluid inputs.      |          |           |
-+----------------------+-------------------------------------------------------------------------+----------+-----------+
-
-
 The following inputs must be preceded by the given to the fluid solver e.g., "fluid."
 
 +------------------------------------------+----------------------------------------------------------+--------+----------+
-|                                          | Description                                              | Type   | Default  |
+|                                          | Description                                              |  Type  | Default  |
 +==========================================+==========================================================+========+==========+
+| solve                                    | Specify the names of the fluids or None to disable the   | String |  None    |
+|                                          | fluid solver. The name assigned to the fluid solver is   |        |          |
+|                                          | used to specify fluids inputs.                           |        |          |
++------------------------------------------+----------------------------------------------------------+--------+----------+
 | molecular_weight                         | Value of constant fluid molecular weight                 |  Real  |    0     |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
 | viscosity                                | Specify which viscosity model to use for fluid           | String |  None    |
@@ -254,13 +282,6 @@ The following inputs must be preceded by the given to the fluid solver e.g., "fl
 |                                          | [defined species must be a subset of the species.solve   |        |          |
 |                                          | arguments]                                               |        |          |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
-| species.[species0].specific_heat         | Specify species0 specific heat if it is different than   |  Real  |  0       |
-|                                          | the value specified in the species model settings        |        |          |
-+------------------------------------------+----------------------------------------------------------+--------+----------+
-| species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation if it is          |  Real  |  0       |
-|                                          | different than the value specified in the species        |        |          |
-|                                          | model settings                                           |        |          |
-+------------------------------------------+----------------------------------------------------------+--------+----------+
 | newton_solver.absolute_tol               | Define absolute tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
 +------------------------------------------+----------------------------------------------------------+--------+----------+
 | newton_solver.relative_tol               | Define relative tolerance for Damped-Newton solver       |  Real  |  1.e-8   |
@@ -272,29 +293,19 @@ Below is an example for specifying fluid solver model options.
 
 .. code-block:: none
 
-   fluid.solve = myfluid
+   fluid.solve = my_fluid
 
-   myfluid.viscosity = constant
-   myfluid.viscosity.constant = 1.8e-5
+   fluid.viscosity = constant
+   fluid.viscosity.constant = 1.8e-5
 
-   myfluid.specific_heat = mixture
+   fluid.reference_temperature = 298.15
 
-   myfluid.thermal_conductivity = constant
-   myfluid.thermal_conductivity.constant = 0.024
+   fluid.thermal_conductivity = constant
+   fluid.thermal_conductivity.constant = 0.024
 
-   myfluid.reference_temperature = 298.15
+   fluid.specific_heat = mixture
 
-   myfluid.species =  O2  He
-
-   # this is optional. it has to be specified in case it is different than 
-   # the value passed in the species section
-   myfluid.species.O2.specific_heat = 918.0
-   myfluid.species.He.specific_heat = 1667.0
-
-   # this is optional. it has to be specified in case it is different than 
-   # the value passed in the species section
-   myfluid.species.O2.enthalpy_of_formation = 0
-   myfluid.species.He.enthalpy_of_formation = 0
+   fluid.species =  O2  CO  CO2
 
 
 Solids model settings
@@ -309,16 +320,6 @@ models. The following inputs must be preceded by the "solids." root
 | types                                    | Specified name(s) of the SOLIDS types or None to disable    | String   |  None    |
 |                                          | the SOLIDS solver. The user defined names are used to       |          |          |
 |                                          | specify DEM and/or PIC model inputs.                        |          |          |
-+------------------------------------------+-------------------------------------------------------------+----------+----------+
-| newton_solver.absolute_tol               | Define absolute tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
-+------------------------------------------+-------------------------------------------------------------+----------+----------+
-| newton_solver.relative_tol               | Define relative tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
-+------------------------------------------+-------------------------------------------------------------+----------+----------+
-| newton_solver.max_iterations             | Define max number of iterations for Damped-Newton solver    |  int     |  100     |
-+------------------------------------------+-------------------------------------------------------------+----------+----------+
-| plot_regions                             | This input helps setting which regions to use for filtering | String   |  None    |
-|                                          | solids data by plotting only those particles that reside    |          |          |
-|                                          | in the specified regions                                    |          |          |
 +------------------------------------------+-------------------------------------------------------------+----------+----------+
 | molecular_weight                         | Value of constant solid molecular                           |  Real    |  0       |
 |                                          | weight                                                      |          |          |
@@ -342,32 +343,28 @@ models. The following inputs must be preceded by the "solids." root
 |                                          | be a subset of the species.solve                            |          |          |
 |                                          | arguments].                                                 |          |          |
 +------------------------------------------+-------------------------------------------------------------+----------+----------+
-| species.[species0].specific_heat         | Specify species0 specific heat if it is                     |  Real    |  0       |
-|                                          | different than the value specified in                       |          |          |
-|                                          | the species model settings                                  |          |          |
+| newton_solver.absolute_tol               | Define absolute tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
 +------------------------------------------+-------------------------------------------------------------+----------+----------+
-| species.[species0].enthalpy_of_formation | Specify species0 enthalpy of formation                      |  Real    |  0       |
-|                                          | if it is different than the value                           |          |          |
-|                                          | specified in the species model settings                     |          |          |
+| newton_solver.relative_tol               | Define relative tolerance for Damped-Newton solver          |  Real    |  1.e-6   |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| newton_solver.max_iterations             | Define max number of iterations for Damped-Newton solver    |  int     |  100     |
++------------------------------------------+-------------------------------------------------------------+----------+----------+
+| plot_regions                             | This input helps setting which regions to use for filtering | String   |  None    |
+|                                          | solids data by plotting only those particles that reside    |          |          |
+|                                          | in the specified regions                                    |          |          |
 +------------------------------------------+-------------------------------------------------------------+----------+----------+
 
 Below is an example for specifying the solids solver model options.
 
 .. code-block:: none
 
-   solids.types = mysolid
+   solids.types = my_solid0  my_solid1
 
    solids.reference_temperature = 298.15
 
-   solids.species = H2O
+   solids.specific_heat = mixture
 
-   # this is optional. it has to be specified in case it is different than 
-   # the value passed in the species section
-   mysolid.species.H20.specific_heat = 4186.0
-
-   # this is optional. it has to be specified in case it is different than 
-   # the value passed in the species section
-   mysolid.species.H2O.enthalpy_of_formation = -15861265.26
+   solids.species = Fe2O3  FeO
 
 
 Chemical Reactions model settings
@@ -396,10 +393,10 @@ The following inputs must be preceded by the "chemistry." prefix
 
 .. code-block:: none
 
-   chemistry.solve = myreaction0 myreaction1
+   chemistry.solve = my_reaction0 my_reaction1
 
-   myreaction0.reaction = CH4(g)+2O2(g)-->CO2(g)+2H2O(g)
-   myreaction1.reaction = C(s)+0.5O2(g)-->CO(g)
+   my_reaction0.reaction = Fe2O3(s)+CO(g)-->2.FeO(s)+CO2(g)
+   my_reaction1.reaction = FeO(s)+0.25O2(g)-->0.5Fe2O3(s)
 
 
 DEM model settings
@@ -533,23 +530,23 @@ For a fluid phase, the following inputs can be defined.
 
 The name of the DEM phases to be defined in the IC region and the packing must be defined.
 
-+---------------------+----------------------------------------------------------------+-------------+-----------+
-|                     | Description                                                    |   Type      | Default   |
-+=====================+================================================================+=============+===========+
-| ic.[region].solids  | List of solids                                                 | Strings     | None      |
-+---------------------+----------------------------------------------------------------+-------------+-----------+
-| ic.[region].packing | Specifies how auto-generated particles are placed in the IC    | String      | None      |
-|                     | region:                                                        |             |           |
-|                     |                                                                |             |           |
-|                     | * hcp -- hex-centered packing                                  |             |           |
-|                     | * random -- random packing                                     |             |           |
-|                     | * pseudo_random                                                |             |           |
-|                     | * oneper -- one particle per cell                              |             |           |
-|                     | * eightper -- eight particles per cell                         |             |           |
-|                     | * n-cube -- n^3 particles per cell where n is an integer       |             |           |
-|                     |                                                                |             |           |
-|                     | (NOTE: oneper is equivalent to 1-cube and eightper to 2-cube)  |             |           |
-+---------------------+----------------------------------------------------------------+-------------+-----------+
++---------------------+------------------------------------------------------------------+-------------+-----------+
+|                     | Description                                                      |   Type      | Default   |
++=====================+==================================================================+=============+===========+
+| ic.[region].solids  | Solids type in this IC region (only one type per region allowed) | String      | None      |
++---------------------+------------------------------------------------------------------+-------------+-----------+
+| ic.[region].packing | Specifies how auto-generated particles are placed in the IC      | String      | None      |
+|                     | region:                                                          |             |           |
+|                     |                                                                  |             |           |
+|                     | * hcp -- hex-centered packing                                    |             |           |
+|                     | * random -- random packing                                       |             |           |
+|                     | * pseudo_random                                                  |             |           |
+|                     | * oneper -- one particle per cell                                |             |           |
+|                     | * eightper -- eight particles per cell                           |             |           |
+|                     | * n-cube -- n^3 particles per cell where n is an integer         |             |           |
+|                     |                                                                  |             |           |
+|                     | (NOTE: oneper is equivalent to 1-cube and eightper to 2-cube)    |             |           |
++---------------------+------------------------------------------------------------------+-------------+-----------+
 
 For each solid, the following inputs may be defined.
 
@@ -604,32 +601,55 @@ Below is an example for specifying an initial condition for a fluid (fluid) and 
 
 .. code-block:: none
 
-   ic.regions  = bed
+   ic.regions  = bed0  bed1
 
-   ic.bed.fluid.volfrac   =  0.725
-   ic.bed.fluid.density   =  1.0
-   ic.bed.fluid.velocity  =  0.015  0.00  0.00
-   ic.bed.fluid.temperature =  383.0
-   ic.bed.fluid.species.H20 =  0.3
-   ic.bed.fluid.species.He =  0.2
-   ic.bed.fluid.species.O2 =  0.5
+   ic.bed0.my_fluid.volfrac   =  0.725
+   ic.bed0.my_fluid.density   =  1.0
+   ic.bed0.my_fluid.velocity  =  0.015  0.00  0.00
+   ic.bed0.my_fluid.temperature =  383.0
+   ic.bed0.my_fluid.species.CO  =  0.3
+   ic.bed0.my_fluid.species.CO2 =  0.2
+   ic.bed0.my_fluid.species.O2  =  0.5
 
-   ic.bed.solids  = solid0
-   ic.bed.packing = pseudo_random
+   ic.bed0.solids  = my_solid0
+   ic.bed0.packing = pseudo_random
 
-   ic.bed.solid0.volfrac  =  0.275
-   ic.bed.solid0.temperature  =  400.0
-   ic.bed.solid0.species.C  =  0.4
-   ic.bed.solid0.species.H20  =  0.6
+   ic.bed0.my_solid0.volfrac  =  0.275
+   ic.bed0.my_solid0.temperature  =  400.0
+   ic.bed0.my_solid0.species.Fe2O3 =  0.4
+   ic.bed0.my_solid0.species.FeO   =  0.6
 
-   ic.bed.solid0.velocity =  0.00  0.00  0.00
+   ic.bed0.my_solid0.velocity =  0.00  0.00  0.00
 
-   ic.bed.solid0.diameter = constant
-   ic.bed.solid0.diameter.constant =  100.0e-6
+   ic.bed0.my_solid0.diameter = constant
+   ic.bed0.my_solid0.diameter.constant =  100.0e-6
 
-   ic.bed.solid0.density  = constant
-   ic.bed.solid0.density.constant  = 1000.0
+   ic.bed0.my_solid0.density  = constant
+   ic.bed0.my_solid0.density.constant  = 1000.0
 
+   ic.bed1.my_fluid.volfrac   =  0.925
+   ic.bed1.my_fluid.density   =  1.0
+   ic.bed1.my_fluid.velocity  =  0.015  0.00  0.00
+   ic.bed1.my_fluid.temperature =  383.0
+   ic.bed1.my_fluid.species.CO  =  0.5
+   ic.bed1.my_fluid.species.CO2 =  0.5
+   ic.bed1.my_fluid.species.O2  =  0.0
+
+   ic.bed1.solids  = my_solid1
+   ic.bed1.packing = pseudo_random
+
+   ic.bed1.my_solid1.volfrac  =  0.075
+   ic.bed1.my_solid1.temperature  =  450.0
+   ic.bed1.my_solid1.species.Fe2O3 =  0.0
+   ic.bed1.my_solid1.species.FeO   =  1.0
+
+   ic.bed1.my_solid1.velocity =  0.10  0.00  0.00
+
+   ic.bed1.my_solid1.diameter = constant
+   ic.bed1.my_solid1.diameter.constant =  110.0e-6
+
+   ic.bed1.my_solid1.density  = constant
+   ic.bed1.my_solid1.density.constant  = 900.0
 
 
 Boundary Conditions
@@ -692,14 +712,13 @@ Below is an example for specifying boundary conditions for a fluid `myfluid`.
    bc.regions = inflow outflow
 
    bc.inflow = mi
-   bc.inflow.myfluid.volfrac     =  1.0
-   bc.inflow.myfluid.density     =  1.0
-   bc.inflow.myfluid.velocity    =  0.015  0.0  0.0
-   bc.inflow.myfluid.temperature =  300
-   bc.inflow.myfluid.species.O2  =  0.0
-   bc.inflow.myfluid.species.CO  =  0.5
-   bc.inflow.myfluid.species.H2O =  0.0
-   bc.inflow.myfluid.species.He  =  0.5
+   bc.inflow.my_fluid.volfrac     =  1.0
+   bc.inflow.my_fluid.density     =  1.0
+   bc.inflow.my_fluid.velocity    =  0.015  0.0  0.0
+   bc.inflow.my_fluid.temperature =  300
+   bc.inflow.my_fluid.species.O2  =  0.0
+   bc.inflow.my_fluid.species.CO  =  0.5
+   bc.inflow.my_fluid.species.CO2 =  0.5
 
    bc.outflow = po
    bc.outflow.myfluid.pressure =  0.0
@@ -718,13 +737,13 @@ by replacing:
 
 .. code-block:: none
 
-   bc.inflow.myfluid.velocity    =  0.0  0.0    0.0  0.0
-   bc.inflow.myfluid.velocity    =  3.0  0.015  0.0  0.0
-   bc.inflow.myfluid.temperature =  0.0  300
-   bc.inflow.myfluid.temperature =  2.99 300
-   bc.inflow.myfluid.temperature =  3.0  500
-   bc.inflow.myfluid.temperature =  4.0  500
-   bc.inflow.myfluid.temperature =  4.01 300
+   bc.inflow.my_fluid.velocity    =  0.0  0.0    0.0  0.0
+   bc.inflow.my_fluid.velocity    =  3.0  0.015  0.0  0.0
+   bc.inflow.my_fluid.temperature =  0.0  300
+   bc.inflow.my_fluid.temperature =  2.99 300
+   bc.inflow.my_fluid.temperature =  3.0  500
+   bc.inflow.my_fluid.temperature =  4.0  500
+   bc.inflow.my_fluid.temperature =  4.01 300
 
 In the above example, the inflow velocity is accelerated from zero to its  
 final value over a period of three seconds. Linear interpolation is used in 
@@ -803,8 +822,8 @@ Below is an example for specifying a normal inflow velocity magnitude for a regi
 
    bc.eb-flow = eb
 
-   bc.eb-flow.fluid.volfrac  = 1.0
-   bc.eb-flow.fluid.velocity = 0.1
+   bc.eb-flow.my_fluid.volfrac  = 1.0
+   bc.eb-flow.my_fluid.velocity = 0.1
 
 Below is an example where only specific cells are imposed a velocity in the x-direction.
 
@@ -817,5 +836,5 @@ Below is an example where only specific cells are imposed a velocity in the x-di
    bc.eb-flow.eb.normal_tol = 3.0
    bc.eb-flow.eb.normal =  0.9848  0.0000  0.1736  # 10 deg
 
-   bc.eb-flow.fluid.volfrac  = 1.0
-   bc.eb-flow.fluid.velocity = 0.1  0.0  0.0
+   bc.eb-flow.my_fluid.volfrac  = 1.0
+   bc.eb-flow.my_fluid.velocity = 0.1  0.0  0.0
