@@ -241,6 +241,7 @@ Value
    +------------------------------+
    | Eulerian::PointRegion::Value |
    +------------------------------+
+
    Returns the value of the field quantity in the selected region.
 
    .. math:: \phi_{ijk}
@@ -257,6 +258,7 @@ Sum
    +-----------------------------+
    | Eulerian::VolumeRegion::Sum |
    +-----------------------------+
+
    The sum is computed by summing all values of the field quantity in the
    selected region.
 
@@ -268,6 +270,7 @@ Min
    +-----------------------------+
    | Eulerian::VolumeRegion::Min |
    +-----------------------------+
+
    Minimum value of the field quantity in the selected region.
 
    .. math:: \min_{ijk} \phi_{ijk}
@@ -278,6 +281,7 @@ Max
    +-----------------------------+
    | Eulerian::VolumeRegion::Max |
    +-----------------------------+
+
    Maximum value of the field quantity in the selected region.
 
    .. math:: \max_{ijk} \phi_{ijk}
@@ -288,6 +292,7 @@ Average
    +---------------------------------+
    | Eulerian::VolumeRegion::Average |
    +---------------------------------+
+
    Average value of the field quantity in the selected region where :math:`N` is
    the total number of observations (cells) in the selected region.
 
@@ -299,6 +304,7 @@ Standard Deviation
    +-------------------------------------------+
    | Eulerian::VolumeRegion::StandardDeviation |
    +-------------------------------------------+
+
    The standard deviation of the field quantity in the selected region where
    :math:`\phi_0` is the average of the variable in the selected region.
 
@@ -314,6 +320,7 @@ Area
    +---------------------------------+
    | Eulerian::SurfaceIntegral::Area |
    +---------------------------------+
+
    Area of selected region is computed by summing the areas of the facets that
    define the surface.
 
@@ -323,6 +330,7 @@ Area-Weighted Average
    +------------------------------------------------+
    | Eulerian::SurfaceIntegral::AreaWeightedAverage |
    +------------------------------------------------+
+
    The area-weighted average is computed by dividing the summation of the
    product of the selected variable and facet area by the total area of the
    region.
@@ -333,6 +341,7 @@ Flow Rate
    +-------------------------------------+
    | Eulerian::SurfaceIntegral::FlowRate |
    +-------------------------------------+
+
    The flow rate of a field variable through a surface is computed by summing
    the product of the phase volume fraction, density, the selected field
    variable, phase velocity normal to the facet :math:`v_n`, and the facet area.
@@ -343,6 +352,7 @@ Mass Flow Rate
    +-----------------------------------------+
    | Eulerian::SurfaceIntegral::MassFlowRate |
    +-----------------------------------------+
+
    The mass flow rate through a surface is computed by summing the product of
    the phase volume fraction, density, phase velocity normal to the facet
    :math:`v_n`, and the facet area.
@@ -353,6 +363,7 @@ Mass-Weighted Average
    +------------------------------------------------+
    | Eulerian::SurfaceIntegral::MassWeightedAverage |
    +------------------------------------------------+
+
    The mass flow rate through a surface is computed by summing the product of
    the phase volume fraction, density, phase velocity normal to the facet, and
    the facet area.
@@ -363,6 +374,7 @@ Volume Flow Rate
    +-------------------------------------------+
    | Eulerian::SurfaceIntegral::VolumeFlowRate |
    +-------------------------------------------+
+
    The volume flow rate through a surface is computed by summing the product of
    the phase volume fraction, phase velocity normal to the facet :math:`v_n`,
    and the facet area.
@@ -379,6 +391,7 @@ Volume
    +----------------------------------+
    | Eulerian::VolumeIntegral::Volume |
    +----------------------------------+
+
    The volume is computed by summing all of the cell volumes in the selected
    region.
 
@@ -388,6 +401,7 @@ Volume Integral
    +------------------------------------------+
    | Eulerian::VolumeIntegral::VolumeIntegral |
    +------------------------------------------+
+
    The volume integral is computed by summing the product of the selected field
    variable and the cell volume.
 
@@ -397,6 +411,7 @@ Volume-Weighted Average
    +-------------------------------------------------+
    | Eulerian::VolumeIntegral::VolumeWeightedAverage |
    +-------------------------------------------------+
+
    The volume-weighted average is computed by dividing the summation of the
    product of the selected field variable and cell volume by the sum of the cell
    volumes.
@@ -407,6 +422,7 @@ Mass-Weighted Integral
    +------------------------------------------------+
    | Eulerian::VolumeIntegral::MassWeightedIntegral |
    +------------------------------------------------+
+
    The mass-weighted integral is computed by summing the product of phase volume
    fraction, density, selected field variable, and cell volume.
 
@@ -416,6 +432,7 @@ Mass-Weighted Average
    +-----------------------------------------------+
    | Eulerian::VolumeIntegral::MassWeightedAverage |
    +-----------------------------------------------+
+
    The mass-weighted average is computed by dividing the sum of the product of
    phase volume fraction, density, selected field variable, and cell volume by
    the summation of the product of the phase volume fraction, density, and cell
@@ -527,6 +544,7 @@ Sum
    +----------------------------------+
    | Lagrangian::GeneralProperty::Sum |
    +----------------------------------+
+
    The sum of particle property, :math:`\phi_p` in the selected region is
    calculated using the following expression.
 
@@ -536,6 +554,7 @@ Min
    +----------------------------------+
    | Lagrangian::GeneralProperty::Min |
    +----------------------------------+
+
    The minimum value of particle property :math:`phi_p` is the selected region
    is obtained using the following expression.
 
@@ -545,6 +564,7 @@ Max
    +----------------------------------+
    | Lagrangian::GeneralProperty::Max |
    +----------------------------------+
+
    The maximum value of particle property :math:`phi_p` is the selected region
    is obtained using the following expression.
 
@@ -563,6 +583,7 @@ Average
    +---------------------------------------+
    | Lagrangian::AveragedProperty::Average |
    +---------------------------------------+
+
    The average value of particle property, :math:`\phi_p` in the selected region
    is calculated using the following expression. For DEM simulations, the
    statistical weight of a particle, :math:`w_p`, is one such that the sum of
@@ -574,6 +595,7 @@ Standard Deviation
    +-------------------------------------------------+
    | Lagrangian::AveragedProperty::StandardDeviation |
    +-------------------------------------------------+
+
    The standard deviation of particle property, :math:`phi_p` in the selected
    region is calculated using the following expression.  :math:`\bar{\phi}` is
    the averaged variable in the selected region.
@@ -584,6 +606,7 @@ Mass-weighted average
    +---------------------------------------------------+
    | Lagrangian::AveragedProperty::MassWeightedAverage |
    +---------------------------------------------------+
+
    Mass-weighted average value of particle property, :math:`\phi_p` in the
    selected region is calculated using the following expression.
 
@@ -593,6 +616,7 @@ Volume-weighted average
    +-----------------------------------------------------+
    | Lagrangian::AveragedProperty::VolumeWeightedAverage |
    +-----------------------------------------------------+
+
    Volume-weighted average value of particle property, :math:`\phi_p` in the
    selected region is calculated using the following expression.
 
@@ -632,6 +656,7 @@ Flow rate
    +--------------------------------+
    | Lagrangian::FlowRate::FlowRate |
    +--------------------------------+
+
    The net flow rate of a general particle property :math:`\phi_p` is computed
    by summing the properties of the set of particles projected to have crossed
    the flow plane, :math:`\Gamma`.
@@ -642,6 +667,7 @@ Mass-weighted flow rate
    +--------------------------------------------+
    | Lagrangian::FlowRate::MassWeightedFlowRate |
    +--------------------------------------------+
+
    The net mass-weighted flow rate is the sum of the general particle property
    :math:`\phi_p` multiplied by the particle mass, :math:`m_p` of the set of
    particles projected to have crossed the flow plane, :math:`\Gamma`.
@@ -652,6 +678,7 @@ Volume-weighted flow rate
    +----------------------------------------------+
    | Lagrangian::FlowRate::VolumeWeightedFlowRate |
    +----------------------------------------------+
+
    The net volume-weighted flow rate is the sum of the general particle property
    :math:`\phi_p` multiplied by the particle volume, :math:`V_p` of the set of
    particles projected to have crossed the flow plane, :math:`\Gamma`.
