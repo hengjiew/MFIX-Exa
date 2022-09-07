@@ -22,5 +22,5 @@ The following inputs must be preceded by "amr" and control checkpoint/restart.
 | write_geom_chk          | When True, writes the EB geometry data into a checkpoint file.        |  bool       | False     |
 +-------------------------+-----------------------------------------------------------------------+-------------+-----------+
 | use_geom_chk_if_present | When True, looks for the EB geometry checkpoint file in the           |  bool       | True      |
-|                         | current direcotry and uses it, overriding any EB geometry in inputs   |             |           |
+|                         | current directory and uses it, overriding any EB geometry in inputs   |             |           |
 +-------------------------+-----------------------------------------------------------------------+-------------+-----------+
