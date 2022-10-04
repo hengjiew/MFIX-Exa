@@ -100,18 +100,31 @@ output file is in Comma Separated Value (CSV) format. The first line of the file
 provides header information. The following inputs must be preceded by the
 "amr.monitors." prefix.
 
-+----------------------------+-------------------------------------------------------------+-------------+-----------+
-|                            | Description                                                 |   Type      | Default   |
-+============================+=============================================================+=============+===========+
-| [monitor].plot_file        | Define the name of the plotfile where monitor output will   |  String     | None      |
-|                            | be saved                                                    |             |           |
-+----------------------------+-------------------------------------------------------------+-------------+-----------+
-| [monitor].plot_int         | Define the timestep frequency for saving monitored data to  |  Int        | -1        |
-|                            | file                                                        |             |           |
-+----------------------------+-------------------------------------------------------------+-------------+-----------+
-| [monitor].plot_per_approx  | Define the approximated simulation time at which saving     |  Real       | 0         |
-|                            | monitored data                                              |             |           |
-+----------------------------+-------------------------------------------------------------+-------------+-----------+
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+|                               | Description                                              |   Type      | Default   |
++===============================+==========================================================+=============+===========+
+| [monitor].plot_file           | Define the name of the plotfile where monitor output     |  String     | None      |
+|                               | will be saved                                            |             |           |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+| [monitor].plot_int            | Define the timestep frequency for saving monitored data  |  Int        | -1        |
+|                               | to file                                                  |             |           |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+| [monitor].plot_per_approx     | Define the approximated simulation time at which saving  |  Real       | 0         |
+|                               | monitored data                                           |             |           |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+| [monitor].output.setw         | Sets the field width to be used on output file           |  Int        | 0         |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+| [monitor].output.setfill      | Sets the filling character for the output file           |  Char       | ''        |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+| [monitor].output.setprecision | Sets the decimal precision to be used to format          |  Int        | 0         |
+|                               | floating-point values in the output file                 |             |           |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
+| [monitor].output.format       | Sets the format flags. Admissible values are:            |  String     | ""        |
+|                               |                                                          |             |           |
+|                               | * "defaultfloat"                                         |             |           |
+|                               | * "fixed"                                                |             |           |
+|                               | * "scientific"                                           |             |           |
++-------------------------------+----------------------------------------------------------+-------------+-----------+
 
 .. code-block:: none
 
