@@ -102,6 +102,11 @@ The following inputs must be preceded by "mfix."
 |                        | Description                                                       |   Type   | Default             |
 +========================+===================================================================+==========+=====================+
 | geometry               | Which type of EB geometry are we using?                           |   String |                     |
+|                        |                                                                   |          |                     |
+|                        | To use geometry from EB checkpoint file in current directory      |          |                     |
+|                        | set value to "chkptfile"                                          |          |                     |
++------------------------+-------------------------------------------------------------------+----------+---------------------+
+| geometry_filename      | The CSG file that defines the EB geometry                         |   String |                     |
 +------------------------+-------------------------------------------------------------------+----------+---------------------+
 | levelset__refinement   | Refinement factor of levelset resolution relative to level 0      |   Int    | 1                   |
 |                        | resolution                                                        |          |                     |
