@@ -349,10 +349,6 @@ models. The following inputs must be preceded by the "solids." root
 +------------------------------------------+-------------------------------------------------------------+----------+----------+
 | newton_solver.max_iterations             | Define max number of iterations for Damped-Newton solver    |  int     |  100     |
 +------------------------------------------+-------------------------------------------------------------+----------+----------+
-| plot_regions                             | This input helps setting which regions to use for filtering | String   |  None    |
-|                                          | solids data by plotting only those particles that reside    |          |          |
-|                                          | in the specified regions                                    |          |          |
-+------------------------------------------+-------------------------------------------------------------+----------+----------+
 
 Below is an example for specifying the solids solver model options.
 

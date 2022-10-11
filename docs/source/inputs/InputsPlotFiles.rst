@@ -161,3 +161,14 @@ The following inputs must be preceded by "amr.solids" and allow to write additio
 +---------------------------+-----------------------------------------------------------------+-------------+-----------+
 
 For each region with name [region] specified in the inputs, it will be saved a plotfile with name "partsXXXXX_[region]", where XXXXX stands for the timestep number.
+
+
+Below is an example for specifying the inputs to plot solids data in  a given
+region.
+
+.. code-block:: none
+
+   amr.solids.regions = my_region
+
+   amr.solids.my_region.plot_int = 10
+   amr.solids.my_region.plt_vel_p = 1
