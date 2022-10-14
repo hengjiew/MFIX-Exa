@@ -4,11 +4,12 @@ Building MFiX-Exa with gmake
 Building MFiX-Exa with gmake 
 
 If you want to use gmake to build MFiX_Exa, you will need to have already
-cloned amrex into a local directory:
+cloned amrex and AMReX-Hydro into a local directory:
 
 .. code:: shell
 
     > git clone https://github.com/amrex-codes/amrex
+    > git clone https://github.com/AMReX-Codes/AMReX-Hydro.git
 
 Then
 
@@ -17,8 +18,10 @@ Then
     > git clone http://mfix.netl.doe.gov/gitlab/exa/mfix.git
     > cd mfix/exec
 
-Edit the GNUmakefile to set AMREX_HOME to be the path to the directory
-where you have put amrex.  Other options that you can set include
+Edit the GNUmakefile (or use an environment variable)
+to set AMREX_HOME and AMREX_HYDRO_HOME
+to be the path to the directories where you have put amrex
+and AMReX-Hydro.  Other options that you can set include
 
 +-----------------+------------------------------+------------------+-------------+
 | Option name     | Description                  | Possible values  | Default     |
