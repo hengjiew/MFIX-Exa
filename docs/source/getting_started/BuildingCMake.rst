@@ -26,16 +26,14 @@ If the option ``CMAKE_BUILD_TYPE`` is omitted,
 
 There are two modes to build MFiX-Exa with cmake:
 
-o **SUPERBUILD (recommended):** AMReX is downloaded and built as part
+o **SUPERBUILD (recommended):** The AMReX and AMReX-Hydro git repos are cloned and built as part
 of the MFiX-Exa build process. This method is strongly encouraged as it
-ensures that the configuration options for MFiX-Exa and AMReX are consistent.
+ensures that the configuration options for MFiX-Exa and these repos are consistent.
 
-o **STANDALONE:** MFiX-Exa source code is built separately and linked to an existing
-AMReX installation. This is ideal for continuous integration severs (CI)
-and regression testing applications. AMReX library version and configuration options
-must meet MFiX-Exa requirements.
-
-
+o **STANDALONE:** MFiX-Exa source code is built separately and linked to existing
+AMReX and AMReX-Hydro repos. This is ideal for continuous integration severs (CI)
+and regression testing applications. AMReX and AMReX_Hydro library versions and
+configuration options must meet MFiX-Exa requirements.
 
 .. note::
    **MFiX-Exa requires CMake 3.14 or higher.**
@@ -139,22 +137,21 @@ subprojects/amrex``.)
 Building AMReX
 ~~~~~~~~~~~~~~~~~~~
 
-Clone AMReX from the official Git repository and checkout the
-*development* branch:
+Clone AMReX from the official Git repository.
+Note that the only branch available is *development*:
 
 .. code:: shell
 
     > git clone https://github.com/AMReX-Codes/amrex.git
-    > cd amrex
-    > git checkout development
 
 Next, configure, build and install AMReX as follows:
 
 .. code:: shell
 
+    > cd amrex
     > mkdir build
     > cd build
-    > cmake -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] -DAMReX_PARTICLES=yes -DAMReX_EB=yes -DAMReX_PLOTFILE_TOOLS=yes [other amrex options] -DCMAKE_INSTALL_PREFIX:PATH=/absolute/path/to/installdir ..
+    > cmake -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] -DAMReX_PARTICLES=yes -DAMReX_EB=yes -DAMReX_PLOTFILE_TOOLS=yes [other amrex options] -DCMAKE_INSTALL_PREFIX:PATH=/absolute_path_to_amrex_installdir ..
     > make install
 
 The options **AMReX\_PARTICLES=yes**, **AMReX\_EB=yes** and  **AMReX\_PLOTFILE\_TOOLS=yes** are required by MFiX-Exa. ``[other amrex options]`` in the snippet above refers to any other AMReX configuration option in addition to the required ones. Please refer to the `AMReX user guide <https://amrex-codes.github.io/amrex/docs_html/BuildingAMReX.html#building-with-cmake>`_ for more details on building AMReX with CMake.
