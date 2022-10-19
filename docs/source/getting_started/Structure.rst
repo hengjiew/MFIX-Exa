@@ -8,16 +8,15 @@ Directory overview
 +===============+==================================================+
 | benchmarks    | UC Benchmark cases (see benchmark/README.md)     |
 +---------------+--------------------------------------------------+
-| doc           |  Source code for building the documentation      |
-+---------------+--------------------------------------------------+
-| exec          | Directory for building with gmake (optional)     |
+| exec          | Directory for building with gmake                |
 +---------------+--------------------------------------------------+
 | src           | Source files                                     |
 +---------------+--------------------------------------------------+
+| subprojects   | Location of dependent git repos for cmake builds |
++---------------+--------------------------------------------------+
 | tests         | Regression tests (see tests/README.md)           |
 +---------------+--------------------------------------------------+
-| tools         | CMake configuration files                        |
+| tools         | cmake configuration files                        |
 +---------------+--------------------------------------------------+
-| tutorials     | Set-ups for different EB geometries              |
+| tutorials     | Additional test cases                            |
 +---------------+--------------------------------------------------+
-

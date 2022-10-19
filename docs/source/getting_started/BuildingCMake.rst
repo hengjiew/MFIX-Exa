@@ -1,4 +1,4 @@
-Building MFiX-Exa with CMake
+Building MFiX-Exa with cmake
 ============================
 
 CMake build is a two-step process. First ``cmake`` is invoked to create
