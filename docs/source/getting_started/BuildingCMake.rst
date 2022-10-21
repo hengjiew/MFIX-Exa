@@ -27,8 +27,11 @@ If the option ``CMAKE_BUILD_TYPE`` is omitted,
 There are two modes to build MFiX-Exa with cmake:
 
 o **SUPERBUILD (recommended):** The AMReX and AMReX-Hydro git repos are cloned and built as part
-of the MFiX-Exa build process. This method is strongly encouraged as it
-ensures that the configuration options for MFiX-Exa and these repos are consistent.
+of the MFiX-Exa build process and placed in the ``mfix/subprojects`` directory.
+Each of these repos can be manipulated like a regular git repo
+(you can change branches, hashes, add remotes, etc.)
+This method is strongly encouraged as it ensures that the configuration options
+for MFiX-Exa are compatible with the AMReX and AMReX-Hydro hashes that are checked out.
 
 o **STANDALONE:** MFiX-Exa source code is built separately and linked to existing
 AMReX and AMReX-Hydro repos. This is ideal for continuous integration severs (CI)
@@ -87,6 +90,7 @@ instance, to build with the ``my-amrex-branch`` branch of the AMReX repo:
 
 .. code:: shell
 
+    > cd /path/to/mfix
     > git -C subprojects/amrex checkout my-amrex-branch
     > git status
     ...
@@ -99,10 +103,8 @@ update``:
 
 .. code:: shell
 
+    > cd /path/to/mfix
     > git submodule update
-    > git status
-    ...
-    nothing to commit, working tree clean
 
 You can edit, commit, pull, and push AMReX changes from ``subprojects/amrex``.
 AMReX development is outside the scope of this document. Run ``git status`` in
