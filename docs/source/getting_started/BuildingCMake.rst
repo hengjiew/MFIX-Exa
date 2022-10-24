@@ -14,10 +14,10 @@ The CMake build process for MFiX-Exa is summarized as follows:
 
 ::
 
-    mkdir /path/to/builddir
-    cd    /path/to/builddir
-    cmake [options] -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] /path/to/mfix
-    make
+    >> mkdir /path/to/builddir
+    >> cd    /path/to/builddir
+    >> cmake [options] -DCMAKE_BUILD_TYPE=[Debug|Release|RelWithDebInfo|MinSizeRel] /path/to/mfix
+    >> make
 
 In the above snippet, ``[options]`` indicates one or more options for the
 customization of the build, as described later in this section.

@@ -12,7 +12,7 @@ more than one grid per MPI rank, and different strategies for distributing the g
 We use the phrase "load balancing" here to refer to the combined process
 of grid creation (and re-creation when regridding) and distribution of grids to MPI ranks.
 
-See :ref:`sec:grid_creation` for grids are created, i.e. how the :cpp:`BoxArray` on which
+See :ref:`sec:grid_creation` for how grids are created, i.e. how the :cpp:`BoxArray` on which
 :cpp:`MultiFabs` will be built is defined at each level.
 
 See :ref:`sec:load_balancing` for the strategies AMReX supports for distributing
