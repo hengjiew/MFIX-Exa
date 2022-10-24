@@ -28,7 +28,9 @@ Several other ways to look at the data include:
 
     VisMF::Write(const FabArray<FArrayBox>& mf, const std::string& name);
 
-and examining it with ``Amrvis`` (section :ref:`sec:amrvis` in the AMReX documentation).
+and examining it with ``Amrvis`` (see the
+`Amrvis section <https://amrex-codes.github.io/amrex/docs_html/Visualization.html>`_
+in the AMReX documentation).
 
 2) You can also use the :cpp:`print_state` routine: 
 

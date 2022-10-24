@@ -27,7 +27,9 @@ See :ref:`sec:dual_grid` for more about this approach.
 When running on multicore machines with OpenMP, we can also control the distribution of
 work by setting the size of grid tiles (by defining :cpp:`fabarray.mfiter_tile_size`), and if relevant, of
 particle tiles (by defining :cpp:`particle.tile_size`).  We can also specify the strategy for assigning
-tiles to OpenMP threads.  See :ref:`sec:basics:mfiter:tiling:` for more about tiling.
+tiles to OpenMP threads.  See
+`MFIter with Tiling <https://amrex-codes.github.io/amrex/docs_html/Basics.html#sec-basics-mfiter-tiling>`_
+in the AMReX documentation for more about tiling.
 
 .. toctree::
    :maxdepth: 1
