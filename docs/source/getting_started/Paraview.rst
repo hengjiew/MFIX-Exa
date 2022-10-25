@@ -5,14 +5,13 @@ Using Paraview
 developed by `Kitware <https://www.kitware.com/>`_. It provides an intuit and
 feature rich tool for visualizing simulation data. Kitware provides pre-built
 binaries that can be `downloaded here <https://www.paraview.org/download/>`_.
-
+Paraview 5.10.1 is the current recommended version.
 
 Visualize the embedded boundary
 -------------------------------
 
 The solver will save the embedded boundary if ``mfix.write_eb_surface = true``
-is set in the inputs file as parallel VTP file named ``eb.pvtp``. The individual
-parts corresponding to different grids are saved as ``eb_########.vtp`` files.
+is set in the inputs file as parallel VTP file named ``eb.pvtp``.
 To open the ``eb.pvtp`` file, press the open button, browse to the simulation
 directory, select the ``eb.pvtp`` file, and press ``OK``. The ``eb.pvtp`` will
 be displayed in the ``Pipeline Browser``. Make sure the ``eb.pvtp`` is selected
@@ -54,8 +53,6 @@ be colored by different variables by selecting the variable in the drop down.
 Additionally, if a group of plot files was opened, the simulation can be
 "played" by pressing the play button.
 
-.. image:: /getting_started/images/paraview_pt_gauss_opts.png
-
 Visualize the cells
 -------------------
 
@@ -63,18 +60,13 @@ Following the same method to visualize the particles, the cells can be
 visualized. The major difference is when the dialog asking what read to use
 is displayed, select the ``AMReX/BoxLib Grid Reader`` and press ``OK``. On the
 properties tab, select which variables to read (make sure to select ``ep_g``,
-we will use this later) and select apply.
+we will use this later) and select apply.  Under the Coloring section select
+``ep_g`` to color the cells by this value.
 
 .. image:: /getting_started/images/paraview_cells.png
 
-If the simulation has ghost cells, we can remove these cells by applying a
-threshold filter. With the ``plt*`` object selected in the Pipeline Browser,
-press the ``Threshold`` button. With the ``Threshold1`` object selected in the
-Pipeline Browser, select ``ep_g`` as the Scalar, change the Minimum value to
-be a little larger than 0 (such as 0.01), and press ``Apply``. All the ghost
-cells should now be removed because ``ep_g`` in the ghost cell is exactly 0 and
-the normal cells should not have a ``ep_g`` less than maximum packing. You can
-still color the cells by any of the field variables while keeping the threshold
-variable as ``ep_g``.
+You can open the embedded boundary, particle, and fluid data simultaneously,
+and change the opacities of the embedded boundary and fluid data to visualize
+all the data simultaneously.
 
-.. image:: /getting_started/images/paraview_cells_threshold.png
+.. image:: /getting_started/images/paraview_all.png
