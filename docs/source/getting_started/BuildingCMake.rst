@@ -39,7 +39,7 @@ and regression testing applications. AMReX and AMReX_Hydro library versions and
 configuration options must meet MFiX-Exa requirements.
 
 .. note::
-   **MFiX-Exa requires CMake 3.14 or higher.**
+   **MFiX-Exa requires CMake 3.20 or higher.**
 
 .. _sec:build:superbuild:
 
@@ -200,8 +200,8 @@ for an available AMReX installation.
            | MFIX\_OMP       | Enable build with OpenMP     | no/yes           | no          |
            |                 |                              |                  |             |
            +-----------------+------------------------------+------------------+-------------+
-           | MFIX\_GPU\_     | On-node, accelerated GPU \   | NONE             | NONE,SYCL,\ |
-           | BACKEND         | backend                      |                  | CUDA,HIP    |
+           | MFIX\_GPU\_     | On-node, accelerated GPU \   | NONE,SYSCL,\     | NONE        |
+           | BACKEND         | backend                      | CUDA,HIP         |             |
            +-----------------+------------------------------+------------------+-------------+
            | MFIX\_HYPRE     | Enable HYPRE support         | no/yes           | no          |
            |                 |                              |                  |             |
@@ -210,6 +210,11 @@ for an available AMReX installation.
            |                 | Exceptions checks            |                  |             |
            +-----------------+------------------------------+------------------+-------------+
            | MFIX\_CSG       | Build with CSG support       | no/yes           | no          |
+           |                 |                              |                  |             |
+           +-----------------+------------------------------+------------------+-------------+
+           | MFIX\_MPI\_     | Concurrent MPI calls from    | no/yes           | no          |
+           | THREAD\_MULTIPLE| multiple threads             |                  |             |
+           |                 |                              |                  |             |
            |                 |                              |                  |             |
            +-----------------+------------------------------+------------------+-------------+
 
